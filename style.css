@@ -1,0 +1,195 @@
+:root {
+  --primary-background: #ffffff;
+  --secondary-background: #f0f0f0;
+  --titlebar-color: #242424;
+  --titlebar-btn-color: #242424;
+  --titlebar-btn-hover-color: #444444;
+  --titlebar-btn-indicator-color: #ffffff;
+  --close-btn-hover-color: #ff0000;
+  --primary-accent-color: greenyellow;
+  --secondary-accent-color: #9e9e9e;
+  --secondary-text-color: #000000;
+}
+
+body,
+html {
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  background-color: var(--primary-background);
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.titlebar {
+  background-color: var(--titlebar-color);
+  display: flex;
+  flex-direction: row-reverse;
+  cursor: grab;
+}
+
+.titlebar:active {
+  cursor: grabbing;
+}
+
+.titlebar-btn {
+  background-color: var(--titlebar-btn-color);
+  color: var(--titlebar-btn-indicator-color);
+  border: none;
+  height: 25px;
+  width: 30px;
+  cursor: pointer;
+  transition: 0.25s ease-in-out;
+}
+
+.titlebar-btn:hover {
+  background-color: var(--titlebar-btn-hover-color);
+  transition: 0.25s ease-in-out;
+}
+
+.close:hover {
+  background-color: var(--close-btn-hover-color);
+  transition: 0.25s ease-in-out;
+}
+
+.result {
+  position: absolute;
+  background-color: var(--secondary-background);
+  width: 50%;
+  height: 70%;
+  margin: 3%;
+  border-radius: 3px;
+}
+
+.progress-bar {
+  position: absolute;
+  width: 33.75%;
+  height: 2%;
+  bottom: 17%;
+  left: 3%;
+  display: inline-flex;
+}
+
+.progress {
+  display: inline-block;
+  vertical-align: middle;
+  width: 100%;
+  height: 50%;
+  margin: auto auto;
+  border-radius: 50px;
+  background-color: var(--primary-accent-color);
+}
+
+.percentage {
+  display: inline-block;
+  vertical-align: middle;
+  font-weight: bold;
+  margin: auto auto;
+  background-color: var(--primary-background);
+  padding-inline: 1%;
+}
+
+.export-options {
+  position: absolute;
+  left: 3%;
+  bottom: 5%;
+  height: 5%;
+  width: 50%;
+}
+
+.export-options form {
+  height: 100%;
+  width: 100%;
+}
+
+.export-path {
+  height: 95%;
+  width: 81%;
+  padding-left: 2.5%;
+  border: none;
+  background-color: var(--secondary-background);
+  border-radius: 3px;
+}
+
+.save-export-options-btn {
+  float: right;
+  height: 100%;
+  width: 15%;
+  border: none;
+  font-weight: 900;
+  background-color: var(--secondary-background);
+  cursor: pointer;
+  border-radius: 3px;
+}
+
+.options {
+  position: absolute;
+  right: 0;
+  top: 25px;
+  background: var(--secondary-accent-color);
+  width: 45%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  align-items: center;
+}
+
+.options .alg-gen-select {
+  height: 2.5rem;
+  width: 100%;
+  text-align: center;
+  font-size: 1.25rem;
+  font-family: Helvetica;
+  background: none;
+  border-color: var(--primary-background);
+  border-width: 0.15rem;
+  border-radius: 0.5rem;
+  color: var(--primary-background);
+  cursor: pointer;
+  margin-bottom: 5rem;
+}
+
+.options .alg-gen-select:active {
+  color: var(--secondary-text-color);
+}
+
+.options .default-gen-options {
+  font-weight: 700;
+  font-family: "Courier New";
+  color: var(--secondary-text-color);
+  background-color: var(--secondary-background);
+  padding: 2rem;
+  border-radius: 1rem;
+}
+
+.options .default-gen-options > div {
+  margin: 1.5rem;
+}
+
+input[type="color"] {
+  border: none;
+  cursor: pointer;
+}
+
+.preview-btn-div {
+  display: flex;
+  justify-content: center;
+}
+
+.preview-btn {
+  background: none;
+  border-color: var(--secondary-text-color);
+  border-radius: 0.5rem;
+  border-width: 0.1rem;
+  height: 2rem;
+  width: 5rem;
+  cursor: pointer;
+}
+
+/* @media screen and (max-width: 710px) {
+    .result {
+        width: 90%;
+        margin: 3% auto;
+    }
+} */

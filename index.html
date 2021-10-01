@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Art Generator</title>
+    <link rel="stylesheet" href="./style.css" />
+    <!-- Loading-in the css (cascading stylesheet) -->
+    <script defer src="./main.js"></script>
+    <!-- Loading-in the javascript (or Ecmascript) with  the defer keyword so that it is loaded in after all the other elements, and thus will be able to acces them -->
+  </head>
+  <body>
+    <div class="titlebar pywebview-drag-region">
+      <!-- The titlebar needs the 'pywebview-drag-region' class so that the pywebview python library can know to move the window when this section is dragged -->
+      <button class="titlebar-btn close">X</button>
+      <!-- Close window button -->
+      <button class="titlebar-btn maximize">□</button>
+      <!-- Maximmize window button -->
+      <button class="titlebar-btn minimize">‒</button>
+      <!-- Minimize window button -->
+    </div>
+
+    <div class="result"></div>
+    <!-- This is where the image of the final result will be displayed -->
+
+    <div class="progress-bar">
+      <!-- The progress of the generation of the image will be displayed here -->
+      <div class="progress"></div>
+      <div class="percentage">75%</div>
+    </div>
+
+    <div class="export-options">
+      <form action="">
+        <input
+          class="export-path"
+          type="text"
+          placeholder="/path/to/file.png"
+        />
+        <button class="save-export-options-btn">Save</button>
+      </form>
+    </div>
+
+    <div class="options">
+      <select class="alg-gen-select">
+        <option value="default">3x+1 (default)</option>
+        <option value="first">First</option>
+        <!-- FIXME: Change value and display name -->
+        <option value="second">Second</option>
+        <!-- FIXME: Change value and display name -->
+      </select>
+
+      <div class="default-gen-options">
+        <div>
+            <label>Background Color:</label>
+            <input class="bkg-color-picker" type="color" />
+        </div>
+        <div>
+            <label>Line Color:</label>
+            <input class="line-color-picker" type="color" />
+        </div>
+        <div>
+            <label>Seed</label>
+            <input class="seed-input" type="text" />
+            <label>Random</label>
+            <input type="checkbox" />
+        </div>
+        <div class="preview-btn-div">
+            <button class="preview-btn">Preview</button>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
