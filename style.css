@@ -8,7 +8,7 @@
   --close-btn-hover-color: #ff0000;
   --primary-accent-color: greenyellow;
   --secondary-accent-color: #9e9e9e;
-  --secondary-text-color: #000000;
+  --primary-text-color: #000000;
 }
 
 body,
@@ -55,15 +55,24 @@ html {
 .result {
   position: absolute;
   background-color: var(--secondary-background);
-  width: 50%;
-  height: 70%;
+  width: 45%;
+  height: 60%;
   margin: 3%;
   border-radius: 3px;
 }
 
+.result img {
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, 0);
+  margin: 3%;
+  width: 100%;
+  max-height: 100%;
+}
+
 .progress-bar {
   position: absolute;
-  width: 33.75%;
+  width: 45%;
   height: 2%;
   bottom: 17%;
   left: 3%;
@@ -94,7 +103,7 @@ html {
   left: 3%;
   bottom: 5%;
   height: 5%;
-  width: 50%;
+  width: 45%;
 }
 
 .export-options form {
@@ -111,7 +120,7 @@ html {
   border-radius: 3px;
 }
 
-.save-export-options-btn {
+.save-btn {
   float: right;
   height: 100%;
   width: 15%;
@@ -145,19 +154,19 @@ html {
   border-color: var(--primary-background);
   border-width: 0.15rem;
   border-radius: 0.5rem;
-  color: var(--primary-background);
+  color: var(--primary-text-color);
   cursor: pointer;
   margin-bottom: 5rem;
 }
 
 .options .alg-gen-select:active {
-  color: var(--secondary-text-color);
+  color: var(--primary-text-color);
 }
 
 .options .default-gen-options {
   font-weight: 700;
   font-family: "Courier New";
-  color: var(--secondary-text-color);
+  color: var(--primary-text-color);
   background-color: var(--secondary-background);
   padding: 2rem;
   border-radius: 1rem;
@@ -165,6 +174,10 @@ html {
 
 .options .default-gen-options > div {
   margin: 1.5rem;
+}
+
+.options .default-gen-options label {
+  color: var(--primary-text-color)
 }
 
 input[type="color"] {
@@ -179,17 +192,10 @@ input[type="color"] {
 
 .preview-btn {
   background: none;
-  border-color: var(--secondary-text-color);
+  border-color: var(--primary-text-color);
   border-radius: 0.5rem;
   border-width: 0.1rem;
   height: 2rem;
   width: 5rem;
   cursor: pointer;
 }
-
-/* @media screen and (max-width: 710px) {
-    .result {
-        width: 90%;
-        margin: 3% auto;
-    }
-} */

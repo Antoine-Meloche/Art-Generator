@@ -1,21 +1,31 @@
 const closeBtn = document.querySelector(".close");
 const maximizeBtn = document.querySelector(".maximize");
 const minimizeBtn = document.querySelector(".minimize");
-const randomCheck = document.querySelector("input[type='checkbox']");
-const seedInput = document.querySelector(".seed-input");
+const saveBtn = document.querySelector(".save-btn");
 
-randomCheck.onchange = () => {
-  if (randomCheck.checked === true) {
-    seedInput.disabled = true;
-  } else {
-    seedInput.disabled = false;
-  }
-};
+window.addEventListener("pywebviewready", () => {
+  pywebview.api.init().then((response) => {
+    console.log(response);
+  });
+});
 
 const Btn = document.querySelector("form > button");
 
-Btn.onclick = () => {
-  pywebview.api.generate("default", 400, 300, "#242424", "./image.png");
+saveBtn.onclick = () => {
+  // Defaults "default", 2100, 1300, "#ffffff", "#242424", 50, 30, 100, 10, 0, "./image.png"
+  pywebview.api.generate(
+    "default",
+    2100,
+    1300,
+    "#ffffff",
+    "#242424",
+    50,
+    30,
+    100,
+    10,
+    0,
+    "./image.png"
+  );
 };
 
 closeBtn.onclick = () => {

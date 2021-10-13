@@ -4,7 +4,6 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Art Generator</title>
     <link rel="stylesheet" href="./style.css" />
     <!-- Loading-in the css (cascading stylesheet) -->
     <script defer src="./main.js"></script>
@@ -21,52 +20,79 @@
       <!-- Minimize window button -->
     </div>
 
-    <div class="result"></div>
+    <div class="result">
+      <img src="" />
+    </div>
     <!-- This is where the image of the final result will be displayed -->
 
     <div class="progress-bar">
       <!-- The progress of the generation of the image will be displayed here -->
       <div class="progress"></div>
-      <div class="percentage">75%</div>
+      <div class="percentage">100%</div>
     </div>
 
     <div class="export-options">
-      <form action="">
+      <form onsubmit="return false">
         <input
           class="export-path"
           type="text"
           placeholder="/path/to/file.png"
         />
-        <button class="save-export-options-btn">Save</button>
+        <button class="save-btn">Save</button>
       </form>
     </div>
 
     <div class="options">
       <select class="alg-gen-select">
         <option value="default">3x+1 (default)</option>
+        <!-- FIXME: Change value and display name -->
         <option value="first">First</option>
         <!-- FIXME: Change value and display name -->
         <option value="second">Second</option>
-        <!-- FIXME: Change value and display name -->
       </select>
 
       <div class="default-gen-options">
-        <div>
+        <div class="gen-default">
+          <div>
+            <label>Width:</label>
+            <input class="width-input" value="2100" type="number" />
+          </div>
+          <div>
+            <label>Height</label>
+            <input class="height-input" value="1300" type="number" />
+          </div>
+          <div>
             <label>Background Color:</label>
-            <input class="bkg-color-picker" type="color" />
-        </div>
-        <div>
+            <input class="bkg-color-picker" value="#242424" type="color" />
+          </div>
+          <div>
             <label>Line Color:</label>
-            <input class="line-color-picker" type="color" />
-        </div>
-        <div>
-            <label>Seed</label>
-            <input class="seed-input" type="text" />
-            <label>Random</label>
-            <input type="checkbox" />
-        </div>
-        <div class="preview-btn-div">
+            <input class="line-color-picker" value="#ffffff" type="color" />
+          </div>
+          <div>
+            <label>Start:</label>
+            <input class="start-input" value="0" type="number" />
+          </div>
+          <div>
+            <label>Iterations:</label>
+            <input class="iteration-input" value="30" type="number">
+          </div>
+          <div>
+            <label>Length of a line:</label>
+            <input class="length-input" value="100" type="number">
+          </div>
+          <div>
+            <label>Angle increment:</label>
+            <input class="angleincr-input" value="10" type="number">
+          </div>
+          <div>
+            <label>Starting angle:</label>
+            <input class="angle-input" value="0" type="number">
+          </div>
+
+          <div class="preview-btn-div">
             <button class="preview-btn">Preview</button>
+          </div>
         </div>
       </div>
     </div>
