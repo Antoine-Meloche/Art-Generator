@@ -21,9 +21,9 @@ class Api:
     def minimize(self):
         window.minimize()
 
-    def generate(self, gen_type, width, height, fg, bkg, n, steps, length, angleincr, angle, exportPath):
+    def generate(self, gen_type, width, height, fg, bkg, n, steps, substeps, length, angleincr, angle, exportPath):
         if gen_type == "default":
-            defaultGen.generate(width, height, fg, bkg, n, steps, length, angleincr, angle, exportPath)
+            defaultGen.generate(width, height, fg, bkg, n, steps, substeps, length, angleincr, angle, exportPath)
             window.evaluate_js(f"document.querySelector('.result img').src = ('{exportPath}')")
         elif gen_type == "":
             pass

@@ -1,15 +1,13 @@
 from PIL import Image, ImageDraw
 import math
+import random
 
-
-def generate(width, height, fg, bkg, n, steps, length, angleincr, angle, exportPath):
+def generate(width, height, fg, bkg, n, steps, substeps, length, angleincr, angle, exportPath):
     image = Image.new('RGB', (width, height), color=bkg)
     draw = ImageDraw.Draw(image)
 
     pt = [(-200), image.size[1]-2]
     points = []
-
-    substeps = 10
 
     collatz_up(steps, substeps, n, pt, length, angle, angleincr, draw, fg, points)
 
@@ -41,7 +39,6 @@ def is_even(n):
 
 def collatz_up(steps: int, substeps: int, n: int, pt: list, length: int, angle: int, angleincr: int, draw: 'PIL.ImageDraw.ImageDraw', fg: str, points: list) -> None:
     for i in range(steps):
-
         if is_even(n):
             if (n-1) % 3 == 0:
                 tmp = (n-1)//3
