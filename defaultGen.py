@@ -9,7 +9,9 @@ def generate(width, height, fg, bkg, n, steps, length, angleincr, angle, exportP
     pt = [(-200), image.size[1]-2]
     points = []
 
-    collatz_up(steps, n, pt, length, angle, angleincr, draw, fg, points)
+    substeps = 10
+
+    collatz_up(steps, substeps, n, pt, length, angle, angleincr, draw, fg, points)
 
     while len(points) > 0:
         for point in points:
@@ -18,7 +20,7 @@ def generate(width, height, fg, bkg, n, steps, length, angleincr, angle, exportP
             pt = [point[2], point[3]]
             angle = point[4]
 
-            collatz_up(steps, n, pt, length, angle,
+            collatz_up(steps, substeps, n, pt, length, angle,
                        angleincr, draw, fg, points)
 
             del points[points.index(point)]
@@ -37,29 +39,38 @@ def is_even(n):
         return False
 
 
-def collatz_up(steps: int, n: int, pt: list, length: int, angle: int, angleincr: int, draw: 'PIL.ImageDraw.ImageDraw', fg: str, points: list) -> None:
+def collatz_up(steps: int, substeps: int, n: int, pt: list, length: int, angle: int, angleincr: int, draw: 'PIL.ImageDraw.ImageDraw', fg: str, points: list) -> None:
     for i in range(steps):
 
         if is_even(n):
-            angle += angleincr
-            
             if (n-1) % 3 == 0:
                 tmp = (n-1)//3
 
                 points.append((steps-i, tmp, pt[0], pt[1], angle))
 
-        else:
-            angle -= angleincr
+            for _ in range(substeps):
+                angle += (angleincr//substeps)
+                incx, incy = increment(angle, length, substeps)
 
-        incx = round(math.sin(math.radians(angle))*length)
-        incy = round(math.cos(math.radians(angle))*length)
+                draw.line((pt[0], pt[1], pt[0]+incx, pt[1]+incy), fill=fg)
+                pt = [pt[0]+incx, pt[1]+incy]
+        else:
+            for _ in range(substeps):
+                angle -= (angleincr//substeps)
+                incx, incy = increment(angle, length, substeps)
+
+                draw.line((pt[0], pt[1], pt[0]+incx, pt[1]+incy), fill=fg)
+                pt = [pt[0]+incx, pt[1]+incy]
+
+        n = n*2
+
+def increment(angle, length, substeps):
+        incx = round(math.sin(math.radians(angle))*length//substeps)
+        incy = round(math.cos(math.radians(angle))*length//substeps)
 
         if angle > 360:
             angle -= 360
-            incx = round(math.sin(math.radians(angle))*length)
-            incy = round(math.cos(math.radians(angle))*length)
-
-        draw.line((pt[0], pt[1], pt[0]+incx, pt[1]+incy), fill=fg)
-        pt = [pt[0]+incx, pt[1]+incy]
-
-        n = n*2
+            incx = round(math.sin(math.radians(angle))*length//substeps)
+            incy = round(math.cos(math.radians(angle))*length//substeps)
+        
+        return incx, incy
