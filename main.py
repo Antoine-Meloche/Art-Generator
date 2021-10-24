@@ -3,7 +3,6 @@ import webview
 import defaultGen
 import sys
 
-
 class Api:
     def __init__(self):
         self._window = None
@@ -25,8 +24,9 @@ class Api:
         if gen_type == "default":
             defaultGen.generate(width, height, fg, bkg, n, steps, substeps, length, angleincr, angle, exportPath)
             window.evaluate_js(f"document.querySelector('.result img').src = ('{exportPath}')")
-        elif gen_type == "":
-            pass
+        elif gen_type == "bash_pipes":
+            pipesGen.generate(width, height, fg, bkg)
+            window.evaluate_js(f"documnt.querySelector('.result img').src = ('{exportPath}')")
         else:
             pass
 
