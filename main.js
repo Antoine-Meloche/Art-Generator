@@ -65,7 +65,7 @@ const catchException = () => {
 };
 
 function changeTheme() {
-  if ( style.innerHTML !== "" ) {
+  if (style.innerHTML !== "") {
     style.innerHMTL = "";
     return;
   }
