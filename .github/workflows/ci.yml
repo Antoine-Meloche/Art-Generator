@@ -7,21 +7,60 @@ on:
     - cron: "0 12 * * WED,SUN"
 
 jobs:
-  test:
-    name: Test python
+  test-linux:
+    name: Python tests on Linux
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install Python 3
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.x
+          architecture: x64
+      - name: Install dependencies and Run tests
+        uses: BSFishy/pip-action@v1
+        with:
+          packages: |
+            pywebview
+            pillow
+            pytest
+      - run: pytest
+  test-windows:
+    name: Python tests on Windows
+    runs-on: windows-latest
+    strategy:
+      fail-fast: false
       matrix:
-        python-version: [ '3.x', 'pypy-3.9' ]
         architecture: [ 'x64', 'x86' ]
     steps:
       - uses: actions/checkout@v2
       - name: Install Python 3
         uses: actions/setup-python@v2
         with:
-          python-version: ${{ matrix.python-version }}
+          python-version: 3.x
           architecture: ${{ matrix.architecture }}
+      - name: Install dependencies and Run tests
+        uses: BSFishy/pip-action@v1
+        with:
+          packages: |
+            pywebview
+            pillow
+            pytest
+      - run: pytest
+  test-macos:
+    name: Python tests on MacOS
+    runs-on: macos-latest
+    strategy:
+      fail-fast: false
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install Python 3
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.x
+          architecture: x64
       - name: Install dependencies and Run tests
         uses: BSFishy/pip-action@v1
         with:
