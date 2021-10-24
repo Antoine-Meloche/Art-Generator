@@ -73,5 +73,5 @@ jobs:
             pillow
             pytest
             pip
-          ugrade: true
+          upgrade: true
       - run: pytest
