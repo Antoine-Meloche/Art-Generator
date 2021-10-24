@@ -1,0 +1,29 @@
+name: Run Tests
+
+on:
+  push:
+  pull_request:
+  schedule:
+    - cron: "0 12 * * WED,SUN"
+
+jobs:
+  test:
+    name: Test python
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [ '2.x', '3.x', 'pypy-2.7', 'pypy-3.6', 'pypy-3.9' ]
+        architecture: [ 'x64', 'x86' ]
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install Python 3
+        uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python-version }}
+          architecture: ${{ matrix.architecture }}
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+      - name: Run tests
+        run: pytest
