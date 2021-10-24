@@ -26,6 +26,8 @@ jobs:
             pywebview
             pillow
             pytest
+            pip
+          upgrade: true
       - run: pytest
   test-windows:
     name: Python tests on Windows
@@ -48,6 +50,8 @@ jobs:
             pywebview
             pillow
             pytest
+            pip
+          upgrade: true
       - run: pytest
   test-macos:
     name: Python tests on MacOS
@@ -68,4 +72,6 @@ jobs:
             pywebview
             pillow
             pytest
+            pip
+          ugrade: true
       - run: pytest
