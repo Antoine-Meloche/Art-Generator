@@ -29,6 +29,8 @@ jobs:
             pip
           upgrade: true
       - run: pytest
+      
+      
   test-windows:
     name: Python tests on Windows
     runs-on: windows-latest
@@ -53,6 +55,8 @@ jobs:
             pip
           upgrade: true
       - run: pytest
+      
+      
   test-macos:
     name: Python tests on MacOS
     runs-on: macos-latest
