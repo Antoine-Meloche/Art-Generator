@@ -1,3 +1,4 @@
 In: main.js - 
 TODO: change to a popup menu with different options including the theme
 TODO: save preferences to localstorage so it keeps the theme on reload
+TODO: make custom dropdown to support dark mode
