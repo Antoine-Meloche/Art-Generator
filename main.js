@@ -1,5 +1,5 @@
 const settingsBtn = document.querySelector(".settings-btn");
-const style = document.querySelector("style");
+const htmlTag = document.querySelector("html");
 const closeBtn = document.querySelector(".close");
 const maximizeBtn = document.querySelector(".maximize");
 const minimizeBtn = document.querySelector(".minimize");
@@ -8,11 +8,11 @@ const saveBtn = document.querySelector(".save-btn");
 const exportPathInput = document.querySelector(".export-path");
 const algSelect = document.querySelector(".alg-gen-select");
 const widthInput = document.querySelector(".width-input");
-const heightInput = docuemnt.querySelector(".height-input");
+const heightInput = document.querySelector(".height-input");
 const bkgInput = document.querySelector(".bkg-color-picker");
 const lineColorInput = document.querySelector(".line-color-picker");
 const startInput = document.querySelector(".start-input");
-const iterationInput = docuemnt.querySelector(".iteration-input");
+const iterationInput = document.querySelector(".iteration-input");
 const substepsInput = document.querySelector(".substep-input");
 const lengthInput = document.querySelector(".length-input");
 const angleIncrInput = document.querySelector(".angleincr-input");
@@ -26,7 +26,7 @@ window.addEventListener("pywebviewready", () => {
 
 settingsBtn.onclick = () => {
   changeTheme();
-}
+};
 
 saveBtn.onclick = () => {
   // Defaults "default", 2100, 1300, "#ffffff", "#242424", 50, 10, 30, 100, 10, 0, "./image.png"
@@ -65,21 +65,9 @@ const catchException = () => {
 };
 
 function changeTheme() {
-  if (style.innerHTML !== "") {
-    style.innerHMTL = "";
-    return;
+  if (document.documentElement.classList.contains("dark")) {
+    document.documentElement.classList.remove("dark");
+  } else {
+    document.documentElement.classList.add("dark");
   }
-  style.innerHMTL = `
-    :root {
-      --primary-background: #242424;
-      --secondary-background: #3f3f3f;
-      --titlebar-color: #121212;
-      --titlebar-btn-color: var(--titlebar-color);
-      --titlebar-btn-hover-color: #444444;
-      --titlebar-btn-indicator-color: #ffffff;
-      --close-btn-hover-color: #ff0000;
-      --primary-accent-color: greenyellow;
-      --secondary-accent-color: #9e9e9e;
-      --primary-text-color: #ffffff;
-    }`
 }

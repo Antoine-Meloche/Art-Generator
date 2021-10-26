@@ -1,110 +1,137 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./style.css" />
-    <!-- Loading-in the css (cascading stylesheet) -->
-    <script defer src="./main.js"></script>
-    <!-- Loading-in the javascript (or Ecmascript) with  the defer keyword so that it is loaded in after all the other elements, and thus will be able to acces them -->
-  </head>
-  <body>
 
-    <!-- This tag will be used to modifiy the necessary settings for the dark mode colorscheme -->
-    <style></style>
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="./style.css" />
+  <!-- Loading-in the css (cascading stylesheet) -->
+  <script defer src="./main.js"></script>
+  <!-- Loading-in the javascript (or Ecmascript) with  the defer keyword so that it is loaded in after all the other elements, and thus will be able to acces them -->
+</head>
 
-    <div class="titlebar pywebview-drag-region">
-      <!-- Settings button -->
-      <button class="settings-btn"><img src="./images/settings.svg" alt="settings cog"></button>
-      <!-- The titlebar needs the 'pywebview-drag-region' class so that the pywebview python library can know to move the window when this section is dragged -->
-      <button class="titlebar-btn close">X</button>
-      <!-- Close window button -->
-      <button class="titlebar-btn maximize">□</button>
-      <!-- Maximmize window button -->
-      <button class="titlebar-btn minimize">‒</button>
-      <!-- Minimize window button -->
-    </div>
+<body>
 
-    <div class="result">
-      <img src="" />
-    </div>
-    <!-- This is where the image of the final result will be displayed -->
+  <!-- This tag will be used to modifiy the necessary settings for the dark mode colorscheme -->
+  <style></style>
 
-    <div class="progress-bar">
-      <!-- The progress of the generation of the image will be displayed here -->
-      <div class="progress"></div>
-      <div class="percentage">100%</div>
-    </div>
+  <!-- The titlebar needs the 'pywebview-drag-region' class so that the pywebview python library can know to move the window when this section is dragged -->
+  <div class="titlebar pywebview-drag-region">
+    <!-- Close window button -->
+    <button class="titlebar-btn close">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white"
+        stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x">
+        <line x1="18" y1="6" x2="6" y2="18"></line>
+        <line x1="6" y1="6" x2="18" y2="18"></line>
+      </svg>
+    </button>
+    <!-- Maximmize window button -->
+    <button class="titlebar-btn maximize">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+        class="feather feather-maximize">
+        <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"></path>
+      </svg>
+    </button>
+    <!-- Minimize window button -->
+    <button class="titlebar-btn minimize">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+        class="feather feather-minimize">
+        <path d="M8 3v3a2 2 0 0 1-2 2H3m18 0h-3a2 2 0 0 1-2-2V3m0 18v-3a2 2 0 0 1 2-2h3M3 16h3a2 2 0 0 1 2 2v3"></path>
+      </svg>
+    </button>
+    <!-- Settings button -->
+    <button class="settings-btn">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-sliders">
+        <line x1="4" y1="21" x2="4" y2="14"></line>
+        <line x1="4" y1="10" x2="4" y2="3"></line>
+        <line x1="12" y1="21" x2="12" y2="12"></line>
+        <line x1="12" y1="8" x2="12" y2="3"></line>
+        <line x1="20" y1="21" x2="20" y2="16"></line>
+        <line x1="20" y1="12" x2="20" y2="3"></line>
+        <line x1="1" y1="14" x2="7" y2="14"></line>
+        <line x1="9" y1="8" x2="15" y2="8"></line>
+        <line x1="17" y1="16" x2="23" y2="16"></line>
+      </svg>
+    </button>
+  </div>
 
-    <div class="export-options">
-      <form onsubmit="return false">
-        <input
-          class="export-path"
-          type="text"
-          placeholder="/path/to/file.png"
-        />
-        <button class="save-btn">Save</button>
-      </form>
-    </div>
+  <div class="result">
+    <img src="" />
+  </div>
+  <!-- This is where the image of the final result will be displayed -->
 
-    <div class="options">
-      <select class="alg-gen-select">
-        <option value="default">3x+1 (default)</option>
-        <!-- FIXME: Change value and display name -->
-        <option value="first">First</option>
-        <!-- FIXME: Change value and display name -->
-        <option value="second">Second</option>
-      </select>
+  <div class="progress-bar">
+    <!-- The progress of the generation of the image will be displayed here -->
+    <div class="progress"></div>
+    <div class="percentage">100%</div>
+  </div>
 
-      <div class="default-gen-options">
-        <div class="gen-default">
-          <div>
-            <label>Width:</label>
-            <input class="width-input" value="2100" type="number" />
-          </div>
-          <div>
-            <label>Height:</label>
-            <input class="height-input" value="1300" type="number" />
-          </div>
-          <div>
-            <label>Background Color:</label>
-            <input class="bkg-color-picker" value="#242424" type="color" />
-          </div>
-          <div>
-            <label>Line Color:</label>
-            <input class="line-color-picker" value="#ffffff" type="color" />
-          </div>
-          <div>
-            <label>Start:</label>
-            <input class="start-input" value="0" type="number" />
-          </div>
-          <div>
-            <label>Iterations:</label>
-            <input class="iteration-input" value="30" type="number">
-          </div>
-          <div>
-            <label>Substeps:</label>
-            <input class="substep-input" value="10" type="number">
-          </div>
-          <div>
-            <label>Length of a line:</label>
-            <input class="length-input" value="100" type="number">
-          </div>
-          <div>
-            <label>Angle increment:</label>
-            <input class="angleincr-input" value="10" type="number">
-          </div>
-          <div>
-            <label>Starting angle:</label>
-            <input class="angle-input" value="0" type="number">
-          </div>
+  <div class="export-options">
+    <form onsubmit="return false">
+      <input class="export-path" type="text" placeholder="/path/to/file.png" />
+      <button class="save-btn">Save</button>
+    </form>
+  </div>
 
-          <div class="preview-btn-div">
-            <button class="preview-btn">Preview</button>
-          </div>
-        </div>
+  <div class="options">
+    <select class="alg-gen-select">
+      <option value="default">3x+1 (default)</option>
+      <option value="pipes">Pipes</option>
+      <!-- FIXME: Change value and display name -->
+      <option value="second">Second</option>
+    </select>
+
+    <div class="default-gen-options">
+      <div class="option">
+        <label>Width:</label>
+        <input class="width-input" value="2100" type="number" />
+      </div>
+      <div class="option">
+        <label>Height:</label>
+        <input class="height-input" value="1300" type="number" />
+      </div>
+      <div class="option">
+        <label>Background Color:</label>
+        <input class="bkg-color-picker" value="#242424" type="color" />
+      </div>
+      <div class="option">
+        <label>Line Color:</label>
+        <input class="line-color-picker" value="#ffffff" type="color" />
+      </div>
+      <div class="option">
+        <label>Start:</label>
+        <input class="start-input" value="0" type="number" />
+      </div>
+      <div class="option">
+        <label>Iterations:</label>
+        <input class="iteration-input" value="30" type="number">
+      </div>
+      <div class="option">
+        <label>Substeps:</label>
+        <input class="substep-input" value="10" type="number">
+      </div>
+      <div class="option">
+        <label>Length of a line:</label>
+        <input class="length-input" value="100" type="number">
+      </div>
+      <div class="option">
+        <label>Angle increment:</label>
+        <input class="angleincr-input" value="10" type="number">
+      </div>
+      <div class="option">
+        <label>Starting angle:</label>
+        <input class="angle-input" value="0" type="number">
+      </div class="option">
+
+      <div class="preview-btn-div">
+        <button class="preview-btn">Preview</button>
       </div>
     </div>
-  </body>
+  </div>
+</body>
+
 </html>
