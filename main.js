@@ -4,9 +4,8 @@ const closeBtn = document.querySelector(".close");
 const maximizeBtn = document.querySelector(".maximize");
 const minimizeBtn = document.querySelector(".minimize");
 const saveBtn = document.querySelector(".save-btn");
-
 const exportPathInput = document.querySelector(".export-path");
-const algSelect = document.querySelector(".alg-gen-select");
+const algSelect = document.querySelector("[custom-dropdown]");
 const widthInput = document.querySelector(".width-input");
 const heightInput = document.querySelector(".height-input");
 const bkgInput = document.querySelector(".bkg-color-picker");
@@ -64,10 +63,10 @@ const catchException = () => {
   });
 };
 
-function changeTheme() {
+const changeTheme = () => {
   if (document.documentElement.classList.contains("dark")) {
     document.documentElement.classList.remove("dark");
   } else {
     document.documentElement.classList.add("dark");
   }
-}
+};

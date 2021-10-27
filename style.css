@@ -1,6 +1,12 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 :root {
   --primary-background: #ffffff;
-  --secondary-background: #f0f0f0;
+  --secondary-background: #d0d0d0;
   --titlebar-color: #242424;
   --titlebar-btn-hover-color: #444444;
   --titlebar-btn-indicator-color: #ffffff;
@@ -28,7 +34,7 @@ html {
   --titlebar-btn-indicator-color: #ffffff;
   --close-btn-hover-color: #ff0000;
   --primary-accent-color: greenyellow;
-  --secondary-accent-color: #9e9e9e;
+  --secondary-accent-color: #5b5b5b;
   --primary-text-color: #ffffff;
 }
 
@@ -193,14 +199,15 @@ html {
   color: var(--primary-text-color);
   cursor: pointer;
   margin-bottom: 5rem;
-  background-color: var(--primary-background);
+  background: var(--primary-background);
 }
+
 
 .options .alg-gen-select:active {
   color: var(--primary-text-color);
 }
 
-.options .default-gen-options {
+.options .gen-options {
   font-weight: 700;
   font-family: "Courier New";
   color: var(--primary-text-color);
@@ -220,19 +227,19 @@ html {
 .option input[type="number"] {
   margin-left: 1rem;
   border: 1px solid var(--primary-text-color);
-  border-radius: .2rem;
+  border-radius: 0.2rem;
   background-color: var(--primary-background);
   color: var(--primary-text-color);
 }
 
-.options .default-gen-options label {
+.options .gen-options label {
   color: var(--primary-text-color);
 }
 
 .option input[type="color"] {
   margin-left: 1rem;
   border: none;
-  border-radius: .2rem;
+  border-radius: 0.2rem;
   cursor: pointer;
 }
 
