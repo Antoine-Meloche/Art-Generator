@@ -73,17 +73,25 @@
   <div class="export-options">
     <form onsubmit="return false">
       <input class="export-path" type="text" placeholder="/path/to/file.png" />
-      <button class="save-btn">Save</button>
+      <button class="save-btn">Save<span></span></button>
     </form>
   </div>
 
   <div class="options">
-    <select class="alg-gen-select">
-      <option value="default"><p>3x+1 (default)</p></option>
-      <option value="pipes"><p>Pipes</p></option>
-      <!-- FIXME: Change value and display name -->
-      <option value="second"><p>Second</p></option>
-    </select>
+    <div custom-select>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+        stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+        class="feather feather-triangle">
+        <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+      </svg>
+
+      <span></span>
+      <div class="custom-options-list">
+        <div class="custom-option one default" value="default">Collatz Conjecture (3x+1)</div>
+        <div class="custom-option two pipes" value="pipes">Pipes</div>
+        <div class="custom-option three waves" value="waves">Waves</div>
+      </div>
+    </div>
 
     <div class="gen-options">
       <div class="option default-gen-option">

@@ -5,7 +5,19 @@ const maximizeBtn = document.querySelector(".maximize");
 const minimizeBtn = document.querySelector(".minimize");
 const saveBtn = document.querySelector(".save-btn");
 const exportPathInput = document.querySelector(".export-path");
-const algSelect = document.querySelector("[custom-dropdown]");
+const algSelectDiv = document.querySelector("[custom-select]");
+const customOptionsList = document.querySelector(
+  "[custom-select] .custom-options-list"
+);
+let algSelectDefault = document.querySelector(
+  "[custom-select] .custom-option.default"
+);
+let algSelectPipes = document.querySelector(
+  "[custom-select] .custom-option.pipes"
+);
+let algSelectWaves = document.querySelector(
+  "[custom-select] .custom-option.waves"
+);
 const widthInput = document.querySelector(".width-input");
 const heightInput = document.querySelector(".height-input");
 const bkgInput = document.querySelector(".bkg-color-picker");
@@ -16,6 +28,8 @@ const substepsInput = document.querySelector(".substep-input");
 const lengthInput = document.querySelector(".length-input");
 const angleIncrInput = document.querySelector(".angleincr-input");
 const angleInput = document.querySelector(".angle-input");
+
+let selected = "default";
 
 window.addEventListener("pywebviewready", () => {
   pywebview.api.init().then((response) => {
@@ -30,7 +44,7 @@ settingsBtn.onclick = () => {
 saveBtn.onclick = () => {
   // Defaults "default", 2100, 1300, "#ffffff", "#242424", 50, 10, 30, 100, 10, 0, "./image.png"
   pywebview.api.generate(
-    algSelect.value,
+    selected,
     widthInput.value,
     heightInput.value,
     bkgInput.value,
@@ -56,6 +70,75 @@ maximizeBtn.onclick = () => {
 minimizeBtn.onclick = () => {
   pywebview.api.minimize();
 };
+
+const setOnClicks = () => {
+  algSelectDefault.onclick = () => {
+    if (selected === "default") {
+      algSelectDiv.classList.toggle("expanded");
+      return;
+    }
+    customOptionsList.innerHTML = `<div class="custom-option one default" value="default">Collatz Conjecture (3x+1)</div>
+      <div class="custom-option two pipes" value="pipes">Pipes</div>
+      <div class="custom-option three waves" value="waves">Waves</div>`;
+    algSelectDiv.classList.remove("expanded");
+    selected = "default";
+    algSelectDefault = document.querySelector(
+      "[custom-select] .custom-option.default"
+    );
+    algSelectPipes = document.querySelector(
+      "[custom-select] .custom-option.pipes"
+    );
+     algSelectWaves = document.querySelector(
+      "[custom-select] .custom-option.waves"
+    );
+    setOnClicks();
+  };
+
+  algSelectPipes.onclick = () => {
+    if (selected === "pipes") {
+      algSelectDiv.classList.toggle("expanded");
+      return;
+    }
+    customOptionsList.innerHTML = `<div class="custom-option one pipes" value="pipes">Pipes</div>
+      <div class="custom-option two default" value="default">Collatz Conjecture (3x+1)</div>
+      <div class="custom-option three waves" value="waves">Waves</div>`;
+    algSelectDiv.classList.remove("expanded");
+    selected = "pipes";
+    algSelectDefault = document.querySelector(
+      "[custom-select] .custom-option.default"
+    );
+    algSelectPipes = document.querySelector(
+      "[custom-select] .custom-option.pipes"
+    );
+     algSelectWaves = document.querySelector(
+      "[custom-select] .custom-option.waves"
+    );
+    setOnClicks();
+  };
+
+  algSelectWaves.onclick = () => {
+    if (selected === "waves") {
+      algSelectDiv.classList.toggle("expanded");
+      return;
+    }
+    customOptionsList.innerHTML = `<div class="custom-option one waves" value="waves">Waves</div>
+      <div class="custom-option two default" value="default">Collatz Conjecture (3x+1)</div>
+      <div class="custom-option three pipes" value="pipes">Pipes</div>`;
+    algSelectDiv.classList.remove("expanded");
+    selected = "waves";
+    algSelectDefault = document.querySelector(
+      "[custom-select] .custom-option.default"
+    );
+    algSelectPipes = document.querySelector(
+      "[custom-select] .custom-option.pipes"
+    );
+     algSelectWaves = document.querySelector(
+      "[custom-select] .custom-option.waves"
+    );
+    setOnClicks();
+  };
+};
+setOnClicks();
 
 const catchException = () => {
   pywebview.api.error().catch((response) => {
