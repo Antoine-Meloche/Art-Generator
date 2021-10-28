@@ -163,6 +163,7 @@ html {
 }
 
 .save-btn {
+  position: relative;
   float: right;
   height: 100%;
   width: 15%;
@@ -172,6 +173,22 @@ html {
   cursor: pointer;
   border-radius: 3px;
   color: var(--primary-text-color);
+  overflow: none;
+}
+
+.save-btn span {
+  position: absolute;
+  top: 62%;
+  left: 50%;
+  transform: translateX(-50%);
+  height: .15rem;
+  width: 0;
+  background-color: var(--primary-text-color);
+  transition: all 0.5s cubic-bezier(0.23, 1, 0.320, 1);
+}
+
+.save-btn:hover span {
+  width: 2.5rem;
 }
 
 .options {
@@ -193,8 +210,7 @@ html {
   text-align: center;
   font-size: 1.25rem;
   font-family: Helvetica;
-  border-color: var(--primary-background);
-  border-width: 0.15rem;
+  border: none;
   border-radius: 0.5rem;
   color: var(--primary-text-color);
   cursor: pointer;
@@ -202,9 +218,83 @@ html {
   background: var(--primary-background);
 }
 
-
 .options .alg-gen-select:active {
   color: var(--primary-text-color);
+}
+
+.options [custom-select] {
+  position: relative; 
+  flex-direction: column;
+  height: 2.5rem;
+  width: 100%;
+  font-size: 1.25rem;
+  font-family: Helvetica;
+  border-radius: .5rem;
+  color: var(--primary-text-color);
+  cursor: pointer;
+  margin-bottom: 5rem;
+  background-color: var(--primary-background);
+  user-select: none;
+  overflow: hidden;
+  transition: all 0.5s cubic-bezier(0.23, 1, 0.320, 1);
+}
+
+.options [custom-select].expanded {
+  height: 7.5rem;
+}
+
+.options [custom-select] svg {
+  position: absolute;
+  top: 0.85rem;
+  right: .75rem;
+  height: .8rem;
+  width: .8rem;
+  stroke: var(--primary-text-color);
+  transform: rotate(180deg);
+  z-index: 100;
+  transition: all 0.5s cubic-bezier(0.23, 1, 0.320, 1);
+}
+
+.options [custom-select].expanded svg {
+  transform: rotate(0deg);
+}
+
+.options [custom-select] span {
+  height: 0;
+  width: 0;
+}
+
+.options [custom-select].expanded span {
+  position: absolute;
+  top: 2.49rem;
+  height: .1rem;
+  width: 100%;
+  background: var(--primary-text-color);
+  z-index: 100;
+}
+
+.options [custom-select] .custom-option {
+  height: 2.5rem;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.options [custom-select] .custom-option:hover {
+  background-color: var(--primary-accent-color);
+}
+
+.options [custom-select].expanded .custom-option.default {
+  border-radius: .5rem .5rem 0 0;
+}
+
+.options [custom-select] .custom-option.default {
+  border-radius: .5rem;
+}
+
+.options [custom-select] .custom-option.waves {
+  border-radius: 0 0 .5rem .5rem;
 }
 
 .options .gen-options {
@@ -268,4 +358,12 @@ html {
   cursor: pointer;
   color: var(--primary-text-color);
   font-weight: 600;
+  transition: all 0.1s cubic-bezier(0.23, 1, 0.320, 1);
+}
+
+.preview-btn:hover {
+  background-color: var(--primary-text-color);
+  color: var(--primary-background);
+  outline: 1px solid var(--primary-background);
+  outline-offset: -5px;
 }
