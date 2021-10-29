@@ -28,7 +28,7 @@ jobs:
             pytest
             pip
           upgrade: true
-      - run: pytest
+      - run: pytest -rx --capture=tee-sys --show-capture=stdout
       
       
   test-windows:
@@ -54,7 +54,7 @@ jobs:
             pytest
             pip
           upgrade: true
-      - run: pytest
+      - run: pytest -rx --capture=tee-sys --show-capture=stdout
       
       
   test-macos:
@@ -78,4 +78,4 @@ jobs:
             pytest
             pip
           upgrade: true
-      - run: pytest
+      - run: pytest -rx --capture=tee-sys --show-capture=stdout

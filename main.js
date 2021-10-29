@@ -30,6 +30,7 @@ const angleIncrInput = document.querySelector(".angleincr-input");
 const angleInput = document.querySelector(".angle-input");
 
 let selected = "default";
+let options;
 
 window.addEventListener("pywebviewready", () => {
   pywebview.api.init().then((response) => {
@@ -43,20 +44,34 @@ settingsBtn.onclick = () => {
 
 saveBtn.onclick = () => {
   // Defaults "default", 2100, 1300, "#ffffff", "#242424", 50, 10, 30, 100, 10, 0, "./image.png"
-  pywebview.api.generate(
-    selected,
-    widthInput.value,
-    heightInput.value,
-    bkgInput.value,
-    lineColorInput.value,
-    startInput.value,
-    iterationInput.value,
-    substepsInput.value,
-    lengthInput.value,
-    angleIncrInput.value,
-    angleInput.value,
-    exportPathInput.value
-  );
+  if (selected === "default") {
+    options = [
+      widthInput.value,
+      heightInput.value,
+      bkgInput.value,
+      lineColorInput.value,
+      startInput.value,
+      iterationInput.value,
+      substepsInput.value,
+      lengthInput.value,
+      angleIncrInput.value,
+      angleInput.value,
+      exportPathInput.value,
+    ];
+  } else if (selected === "pipes") {
+    options = [
+      widthInput.value,
+      heightInput.value,
+      bkgInput.value,
+      lineColorInput.value,
+      pipesInput.value,
+      probInput.value,
+      exportPathInput.value
+    ];
+  } else if (selected === "waves") {
+    options = [];
+  }
+  pywebview.api.generate(selected, options);
 };
 
 closeBtn.onclick = () => {
@@ -88,7 +103,7 @@ const setOnClicks = () => {
     algSelectPipes = document.querySelector(
       "[custom-select] .custom-option.pipes"
     );
-     algSelectWaves = document.querySelector(
+    algSelectWaves = document.querySelector(
       "[custom-select] .custom-option.waves"
     );
     setOnClicks();
@@ -110,7 +125,7 @@ const setOnClicks = () => {
     algSelectPipes = document.querySelector(
       "[custom-select] .custom-option.pipes"
     );
-     algSelectWaves = document.querySelector(
+    algSelectWaves = document.querySelector(
       "[custom-select] .custom-option.waves"
     );
     setOnClicks();
@@ -132,7 +147,7 @@ const setOnClicks = () => {
     algSelectPipes = document.querySelector(
       "[custom-select] .custom-option.pipes"
     );
-     algSelectWaves = document.querySelector(
+    algSelectWaves = document.querySelector(
       "[custom-select] .custom-option.waves"
     );
     setOnClicks();
