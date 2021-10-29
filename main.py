@@ -28,14 +28,15 @@ class Api:
     def minimize(self):
         window.minimize()
 
-    def generate(self, gen_type="default", width=2100, height=1300, fg="#ffffff", bkg="#242424", n=50, steps=30, substeps=10, length=100, angleincr=10, angle=0, exportPath="./image.png"):
+    def generate(self, gen_type: str, options: list):
         if gen_type == "default":
-            defaultGen.generate(width, height, fg, bkg, n, steps,
-                                substeps, length, angleincr, angle, exportPath)
+            defaultGen.generate(options[0], options[1], options[2], options[3], options[4], options[5],
+                                options[6], options[7], options[8], options[9], options[10])
             window.evaluate_js(
-                f"document.querySelector('.result img').src = ('{exportPath}')")
+                f"document.querySelector('.result img').src = ('{options[10]}')")
         elif gen_type == "pipes":
-            pipesGen.generate(width, height, n, prob, fg, bkg)
+            pipesGen.generate(
+                options[0], options[1], options[2], options[3], options[4], options[5])
             window.evaluate_js(
                 f"document.querySelector('.result img').src = ('{exportPath}')")
         else:

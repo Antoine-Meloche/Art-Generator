@@ -1,6 +1,8 @@
+import PIL
 from PIL import Image, ImageDraw
 import math
-import random
+# import random
+
 
 def generate(width, height, fg, bkg, n, steps, substeps, length, angleincr, angle, exportPath):
     image = Image.new('RGB', (width, height), color=bkg)
@@ -9,7 +11,8 @@ def generate(width, height, fg, bkg, n, steps, substeps, length, angleincr, angl
     pt = [(-200), image.size[1]-2]
     points = []
 
-    collatz_up(steps, substeps, n, pt, length, angle, angleincr, draw, fg, points)
+    collatz_up(steps, substeps, n, pt, length,
+               angle, angleincr, draw, fg, points)
 
     while len(points) > 0:
         for point in points:
@@ -25,7 +28,7 @@ def generate(width, height, fg, bkg, n, steps, substeps, length, angleincr, angl
 
     try:
         image.save(exportPath)
-    except Error:
+    except:
         return 418
     return 201
 
@@ -37,7 +40,7 @@ def is_even(n):
         return False
 
 
-def collatz_up(steps: int, substeps: int, n: int, pt: list, length: int, angle: int, angleincr: int, draw: 'PIL.ImageDraw.ImageDraw', fg: str, points: list) -> None:
+def collatz_up(steps: int, substeps: int, n: int, pt: list, length: int, angle: int, angleincr: int, draw: "PIL.ImageDraw.ImageDraw", fg: str, points: list) -> None:
     for i in range(steps):
         if is_even(n):
             if (n-1) % 3 == 0:
@@ -61,13 +64,14 @@ def collatz_up(steps: int, substeps: int, n: int, pt: list, length: int, angle: 
 
         n = n*2
 
+
 def increment(angle, length, substeps):
+    incx = round(math.sin(math.radians(angle))*length//substeps)
+    incy = round(math.cos(math.radians(angle))*length//substeps)
+
+    if angle > 360:
+        angle -= 360
         incx = round(math.sin(math.radians(angle))*length//substeps)
         incy = round(math.cos(math.radians(angle))*length//substeps)
 
-        if angle > 360:
-            angle -= 360
-            incx = round(math.sin(math.radians(angle))*length//substeps)
-            incy = round(math.cos(math.radians(angle))*length//substeps)
-        
-        return incx, incy
+    return incx, incy
