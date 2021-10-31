@@ -1,8 +1,6 @@
 import PIL
 from PIL import Image, ImageDraw
 import math
-# import random
-
 
 def generate(width, height, fg, bkg, n, steps, substeps, length, angleincr, angle, exportPath):
     image = Image.new('RGB', (width, height), color=bkg)
