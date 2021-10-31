@@ -27,6 +27,7 @@ jobs:
             pillow
             pytest
             pip
+            imageio
           upgrade: true
       - run: pytest -rx --capture=tee-sys --show-capture=stdout
       
@@ -53,6 +54,7 @@ jobs:
             pillow
             pytest
             pip
+            imageio
           upgrade: true
       - run: pytest -rx --capture=tee-sys --show-capture=stdout
       
@@ -77,5 +79,6 @@ jobs:
             pillow
             pytest
             pip
+            imageio
           upgrade: true
       - run: pytest -rx --capture=tee-sys --show-capture=stdout
