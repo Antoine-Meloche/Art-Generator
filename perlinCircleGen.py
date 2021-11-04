@@ -25,4 +25,8 @@ def generate(width: int, height: int, fg: str, bkg: str, spread: int, export_pat
         pixels[x,y] = fg_color
         angle += 0.1
 
-    image.save(export_path)
+    try:
+        image.save(export_path)
+    except:
+        return 418
+    return 201
