@@ -1,7 +1,5 @@
-from random import randrange
-# import PIL
+import random
 from PIL import Image, ImageFilter, ImageDraw
-# import numpy as np
 
 
 def generate(width: int, height: int, fg: str, bkg: str, octaves: int, export_path: str):
@@ -9,40 +7,33 @@ def generate(width: int, height: int, fg: str, bkg: str, octaves: int, export_pa
     draw = ImageDraw.Draw(image)
     pixels = image.load()
 
-    grid = noise(octaves)
+    noise(octaves, pixels, width, height)
 
-    ratiox = width/octaves
-    ratioy = height/octaves
-
-    for row in range(octaves):
-        for col in range(octaves):
-            draw.rectangle([(row*ratiox-(ratiox-1), col*ratioy-(ratioy-1)), (row*ratiox, col*ratioy)], fill=grid[row][col])
-            # pixels[row, col] = grid[row][col]
-
-    # gridimg = Image.fromarray(noise(octaves))
-
-    # if gridimg.mode != 'RGB':
-    #     gridimg.convert('RGB').save("tmp.png")
-    # else:
-    #     gridimg.save("tmp.png")
-    for _ in range(10):
-        image = image.filter(ImageFilter.BLUR)
     image.save("tmp.png")
     return 201
 
 
-def noise(octaves: int):
-    # grid = np.zeros(octaves**2).reshape(octaves, octaves)
-    grid=[]
+def noise(octaves: int, pixels, width: int, height: int):
+    pts = []
+    for x in range(octaves):
+        pts.append((x, random.random()))
 
-    # for row in range(grid.shape[0]):
-    for row in range(octaves):
-        grid.append([])
-        # for col in range(grid.shape[1]):
-        for _ in range(octaves):
-            # grid[row].append((255, 255, 255) if randrange(
-            #     0, 2, 1) == 1 else (0, 0, 0))
-            grid[row].append("#ffffff" if randrange(
-                0, 2, 1) == 1 else "#000000")
+    pts = list(map(lambda pt: (map_nums(pt[0], octaves, width), map_nums(pt[1], 1, height)), pts))
 
-    return grid
+    for x in range(1,width+1):
+        y = 0
+        for i in range(len(pts)):
+            jresult = 1
+            for j in range(len(pts)):
+                if i == j:
+                    continue
+                jresult *= ((x-pts[j][0])/(pts[i][0]-pts[j][0]))
+            y += pts[i][1]*jresult
+        try:
+            pixels[x, y] = (255, 255, 255)
+        except IndexError:
+            continue
+
+
+def map_nums(value, init_stop, stop):
+    return (value - 0) / init_stop * stop
