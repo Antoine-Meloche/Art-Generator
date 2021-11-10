@@ -28,20 +28,26 @@ class Api:
     def minimize(self):
         window.minimize()
 
-    def generate(self, gen_type: str, options: list):
-        if gen_type == "default":
-            defaultGen.generate(options[0], options[1], options[2], options[3], options[4], options[5],
-                                options[6], options[7], options[8], options[9], options[10])
-            window.evaluate_js(
-                f"document.querySelector('.result img').src = ('{options[10]}')")
-        elif gen_type == "perlin":
-            pass
-            # perlinCircleGen.generate(
-            #     options[0], options[1], options[2], options[3], options[4], options[5])
-            # window.evaluate_js(
-            #     f"document.querySelector('.result img').src = ('{exportPath}')")
-        else:
-            pass
+    def default_gen(self, width, height, fg, bkg, n, steps, substeps, length, angleincr, angle, export_path):
+        print('ok')
+        defaultGen.generate(width, height, fg, bkg, n, steps,
+                            substeps, length, angleincr, angle, export_path)
+        # window.evaluate_js(
+            # f"document.querySelector('.result img').src = ('{export_path}')")
+
+    # def generate(self, options):
+    #     if options[0] == "default":
+    #         defaultGen.generate(options[1], options[2], options[3], options[4], options[5], options[6],
+    #                             options[7], options[8], options[9], options[10], options[11])
+    #         window.evaluate_js(
+    #             f"document.querySelector('.result img').src = ('{options[11]}')")
+    #     elif options[0] == "circle":
+    #         perlinCircleGen.generate(
+    #             options[1], options[2], options[3], options[4], options[5], options[6])
+    #         window.evaluate_js(
+    #             f"document.querySelector('.result img').src = ('{options[6]}')")
+    #     else:
+    #         pass
 
 
 if __name__ == '__main__':

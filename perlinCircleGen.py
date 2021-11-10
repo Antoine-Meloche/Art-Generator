@@ -3,12 +3,14 @@ import math
 from noise import snoise3
 import random
 
-def generate(width: int, height: int, fg: str, bkg: str, spread: int, export_path: str):
+def generate(width: int, height: int, fg: str, bkg: str, export_path: str):
 
     fg_color = (int(fg[1:3], 16), int(fg[3:5], 16), int(fg[5:7], 16))
 
     xoff = width/2
     yoff = height/2
+
+    spread = width//2-100 if width < height else height//2-100
 
     angle = 0
     image = Image.new('RGB', (width, height), color=bkg)
