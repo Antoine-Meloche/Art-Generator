@@ -11,7 +11,6 @@ def generate(width, height, fg, bkg, n, steps, substeps, length, angleincr, angl
     points = []
     collatz_up(steps, substeps, n, pt, length,
                angle, angleincr, draw, fg, points)
-    print("o")
 
     while len(points) > 0:
         for point in points:
