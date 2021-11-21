@@ -11,7 +11,6 @@ def generate(width, height, fg, bkg, n, steps, substeps, length, angleincr, angl
     points = []
     collatz_up(steps, substeps, n, pt, length,
                angle, angleincr, draw, fg, points)
-    print("o")
 
     while len(points) > 0:
         for point in points:
@@ -26,7 +25,9 @@ def generate(width, height, fg, bkg, n, steps, substeps, length, angleincr, angl
             del points[points.index(point)]
 
     try:
+        print("ok")
         image.save(exportPath)
+        print("ok")
     except:
         return 418
     return 201

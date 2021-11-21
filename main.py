@@ -29,11 +29,21 @@ class Api:
         window.minimize()
 
     def default_gen(self, width, height, fg, bkg, n, steps, substeps, length, angleincr, angle, export_path):
-        print('ok')
+        width = int(width)
+        height = int(height)
+        fg = str(fg)
+        bkg = str(bkg)
+        n = int(n)
+        steps = int(steps)
+        substeps = int(substeps)
+        length = int(length)
+        angleincr = int(angleincr)
+        angle = int(angle)
+        export_path = str(export_path)
         defaultGen.generate(width, height, fg, bkg, n, steps,
                             substeps, length, angleincr, angle, export_path)
-        # window.evaluate_js(
-            # f"document.querySelector('.result img').src = ('{export_path}')")
+        window.evaluate_js(f"document.querySelector('.result img').src = '{export_path}'")
+        print("ok")
 
     # def generate(self, options):
     #     if options[0] == "default":
