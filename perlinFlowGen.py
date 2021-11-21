@@ -14,13 +14,18 @@ def generate(width: int, height: int, fg: str, bkg: str, octaves: int, export_pa
 
 
 def noise(octaves: int, pixels, width: int, height: int):
+    set1 = []
+
     pts = []
     for x in range(octaves):
-        pts.append((x, random.random()))
+        rand_y = random.random()
+        pts.append((x, rand_y))
 
-    pts = list(map(lambda pt: (map_nums(pt[0], octaves, width), map_nums(pt[1], 1, height)), pts))
+    pts = list(map(lambda pt: (map_nums(pt[0], octaves, width), map_nums(pt[1], 1, 1300)), pts))
 
-    for x in range(1,width+1):
+    # x = 0
+    # while x <= width:
+    for x in range(width+1):
         y = 0
         for i in range(len(pts)):
             jresult = 1
@@ -29,11 +34,36 @@ def noise(octaves: int, pixels, width: int, height: int):
                     continue
                 jresult *= ((x-pts[j][0])/(pts[i][0]-pts[j][0]))
             y += pts[i][1]*jresult
+
+        set1.append((x, y))
         try:
             pixels[x, y] = (255, 255, 255)
         except IndexError:
             continue
 
+    # x = 0
+    # while x <= width:
+    for x in range(width+1):
+        y = 0
+        for i in range(len(set1)):
+            jresult = 1
+            for j in range(len(set1)):
+                if i == j:
+                    continue
+                jresult *= ((x-set1[j][0])/(set1[i][0]-set1[j][0]))
+            y += set1[i][1]*jresult
+
+        y = map_nums(y, 2100, 100)
+
+        set1[x] = (set1[x][0], (set1[x][1]+y)-height//2)
+
+
+    # for (x, y) in set1:
+    #     try:
+    #         pixels[x, y] = (255, 255, 255)
+    #     except IndexError:
+    #         continue
+
 
 def map_nums(value, init_stop, stop):
-    return (value - 0) / init_stop * stop
+    return value / init_stop * stop
