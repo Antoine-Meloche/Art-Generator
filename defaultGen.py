@@ -9,6 +9,7 @@ def generate(width, height, fg, bkg, n, steps, substeps, length, angleincr, angl
 
     pt = [(-200), image.size[1]-2]
     points = []
+
     collatz_up(steps, substeps, n, pt, length,
                angle, angleincr, draw, fg, points)
 
