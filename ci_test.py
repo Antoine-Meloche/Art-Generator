@@ -15,7 +15,7 @@ def test_defaultGen():
 def test_perlinCircleGen():
     start = time()
     assert perlinCircleGen.generate(
-        1200, 1200, "#ffffff", "#242424", 600, "./image.png") == 201
+        1200, 1200, "#ffffff", "#242424", "./image.png") == 201
     end = time()
     print(":\nThe Perlin Circle algorithm took %ss to complete" %
           (end - start), end="")
