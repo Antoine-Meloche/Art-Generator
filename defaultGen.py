@@ -26,9 +26,7 @@ def generate(width, height, fg, bkg, n, steps, substeps, length, angleincr, angl
             del points[points.index(point)]
 
     try:
-        print("ok")
         image.save(exportPath)
-        print("ok")
     except:
         return 418
     return 201

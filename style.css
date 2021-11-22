@@ -160,6 +160,7 @@ html {
   border: none;
   background-color: var(--secondary-background);
   border-radius: 3px;
+  color: var(--primary-text-color);
 }
 
 .save-btn {

@@ -42,22 +42,21 @@ class Api:
         export_path = str(export_path)
         defaultGen.generate(width, height, fg, bkg, n, steps,
                             substeps, length, angleincr, angle, export_path)
-        window.evaluate_js(f"document.querySelector('.result img').src = '{export_path}'")
-        print("ok")
+        self.set_image(export_path)
 
-    # def generate(self, options):
-    #     if options[0] == "default":
-    #         defaultGen.generate(options[1], options[2], options[3], options[4], options[5], options[6],
-    #                             options[7], options[8], options[9], options[10], options[11])
-    #         window.evaluate_js(
-    #             f"document.querySelector('.result img').src = ('{options[11]}')")
-    #     elif options[0] == "circle":
-    #         perlinCircleGen.generate(
-    #             options[1], options[2], options[3], options[4], options[5], options[6])
-    #         window.evaluate_js(
-    #             f"document.querySelector('.result img').src = ('{options[6]}')")
-    #     else:
-    #         pass
+    def circle_gen(self, width, height, fg, bkg, export_path):
+        width = int(width)
+        height = int(height)
+        fg = str(fg)
+        bkg = str(bkg)
+        export_path = str(export_path)
+        perlinCircleGen.generate(width, height, fg, bkg, export_path)
+        self.set_image(export_path)
+
+    def set_image(self, export_path):
+        window.evaluate_js(f"document.querySelector('.result img').src = ''")
+        window.evaluate_js(
+            f"document.querySelector('.result img').src = '{export_path}'")
 
 
 if __name__ == '__main__':
