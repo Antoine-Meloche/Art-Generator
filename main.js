@@ -55,49 +55,16 @@ previewBtn.onclick = () => {
       exportPathInput.value,
     );
   } else if (selected === "circle") {
-    pywebview.api.generate([
-      selected,
+    pywebview.api.circle_gen(
       widthInput.value,
       heightInput.value,
       lineColorInput.value,
       bkgInput.value,
       exportPathInput.value,
-    ]);
+    );
   } else if (selected === "waves") {
     pywebview.api.generate("waves", []);
   }
-};
-
-saveBtn.onclick = () => {
-  // Defaults "default", 2100, 1300, "#ffffff", "#242424", 50, 10, 30, 100, 10, 0, "./image.png"
-  if (selected === "default") {
-    options = [
-      selected,
-      widthInput.value,
-      heightInput.value,
-      bkgInput.value,
-      lineColorInput.value,
-      startInput.value,
-      iterationInput.value,
-      substepsInput.value,
-      lengthInput.value,
-      angleIncrInput.value,
-      angleInput.value,
-      exportPathInput.value,
-    ];
-  } else if (selected === "circle") {
-    options = [
-      selected,
-      widthInput.value,
-      heightInput.value,
-      lineColorInput.value,
-      bkgInput.value,
-      exportPathInput.value,
-    ];
-  } else if (selected === "waves") {
-    options = [];
-  }
-  pywebview.api.generate(options);
 };
 
 closeBtn.onclick = () => {
