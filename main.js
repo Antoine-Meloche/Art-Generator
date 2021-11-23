@@ -3,9 +3,10 @@ const htmlTag = document.querySelector("html");
 const closeBtn = document.querySelector(".close");
 const maximizeBtn = document.querySelector(".maximize");
 const minimizeBtn = document.querySelector(".minimize");
-const previewBtn = document.querySelector(".preview-btn");
+const progress = document.querySelector(".in-progress");
 const saveBtn = document.querySelector(".save-btn");
 const exportPathInput = document.querySelector(".export-path");
+const noPath = document.querySelector(".no-export-path");
 const algSelectDiv = document.querySelector("[custom-select]");
 const customOptionsList = document.querySelector(
   "[custom-select] .custom-options-list"
@@ -39,7 +40,15 @@ window.addEventListener("pywebviewready", () => {
   });
 });
 
-previewBtn.onclick = () => {
+saveBtn.onclick = () => {
+  if (exportPathInput.value === "") {
+    noPath.style.height = "2rem";
+    setTimeout(() => {
+      noPath.style.height = "0";
+    }, 1500);
+    return;
+  }
+  progress.hidden = false;
   if (selected === "default") {
     pywebview.api.default_gen(
       widthInput.value,
@@ -52,7 +61,7 @@ previewBtn.onclick = () => {
       lengthInput.value,
       angleIncrInput.value,
       angleInput.value,
-      exportPathInput.value,
+      exportPathInput.value
     );
   } else if (selected === "circle") {
     pywebview.api.circle_gen(
@@ -60,7 +69,7 @@ previewBtn.onclick = () => {
       heightInput.value,
       lineColorInput.value,
       bkgInput.value,
-      exportPathInput.value,
+      exportPathInput.value
     );
   } else if (selected === "waves") {
     pywebview.api.generate("waves", []);

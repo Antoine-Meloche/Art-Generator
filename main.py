@@ -1,5 +1,6 @@
 import sys
 import webview
+import time
 import defaultGen
 import perlinCircleGen
 
@@ -56,7 +57,8 @@ class Api:
     def set_image(self, export_path):
         window.evaluate_js(f"document.querySelector('.result img').src = ''")
         window.evaluate_js(
-            f"document.querySelector('.result img').src = '{export_path}'")
+            f"document.querySelector('.result img').src = '{export_path + '?' + str(time.time())}'")
+        window.evaluate_js("progress.hidden=true")
 
 
 if __name__ == '__main__':
