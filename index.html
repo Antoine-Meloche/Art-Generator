@@ -60,18 +60,25 @@
   </div>
 
   <div class="result">
+    <div hidden class="in-progress"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+        fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+        class="feather feather-loader">
+        <line x1="12" y1="2" x2="12" y2="6"></line>
+        <line x1="12" y1="18" x2="12" y2="22"></line>
+        <line x1="4.93" y1="4.93" x2="7.76" y2="7.76"></line>
+        <line x1="16.24" y1="16.24" x2="19.07" y2="19.07"></line>
+        <line x1="2" y1="12" x2="6" y2="12"></line>
+        <line x1="18" y1="12" x2="22" y2="12"></line>
+        <line x1="4.93" y1="19.07" x2="7.76" y2="16.24"></line>
+        <line x1="16.24" y1="7.76" x2="19.07" y2="4.93"></line>
+      </svg></div>
     <img src="" />
   </div>
   <!-- This is where the image of the final result will be displayed -->
 
-  <div class="progress-bar">
-    <!-- The progress of the generation of the image will be displayed here -->
-    <div class="progress"></div>
-    <div class="percentage">100%</div>
-  </div>
-
   <div class="export-options">
     <form onsubmit="return false">
+      <div class="no-export-path">An export path is required.</div>
       <input class="export-path" type="text" placeholder="/path/to/file.png" />
       <button class="save-btn">Save<span></span></button>
     </form>
@@ -79,9 +86,8 @@
 
   <div class="options">
     <div custom-select>
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
-        stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-        class="feather feather-triangle">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-triangle">
         <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
       </svg>
 
@@ -94,19 +100,19 @@
     </div>
 
     <div class="gen-options">
-      <div class="option default-gen-option">
+      <div class="option">
         <label>Width:</label>
         <input class="width-input" value="2100" type="number" />
       </div>
-      <div class="option default-gen-option">
+      <div class="option">
         <label>Height:</label>
         <input class="height-input" value="1300" type="number" />
       </div>
-      <div class="option default-gen-option">
+      <div class="option">
         <label>Background Color:</label>
         <input class="bkg-color-picker" value="#242424" type="color" />
       </div>
-      <div class="option default-gen-option">
+      <div class="option">
         <label>Line Color:</label>
         <input class="line-color-picker" value="#ffffff" type="color" />
       </div>
@@ -133,10 +139,6 @@
       <div class="option default-gen-option">
         <label>Starting angle:</label>
         <input class="angle-input" value="0" type="number">
-      </div class="option default-gen-option">
-
-      <div class="preview-btn-div">
-        <button class="preview-btn">Preview</button>
       </div>
     </div>
   </div>
