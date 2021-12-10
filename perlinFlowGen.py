@@ -1,4 +1,4 @@
-# # # import random
+## # # import random
 # # # from PIL import Image, ImageFilter, ImageDraw
 
 
@@ -129,6 +129,7 @@ def noise(pts, pt, octaves):
                 jresult *= ((x-pts[j][0])/(pts[i][0]-pts[j][0]))
             y += pts[i][1]*jresult
         x += .01
+    return y
 
 def in_nested(nest, num):
     for nested in nest:
