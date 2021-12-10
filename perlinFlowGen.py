@@ -92,7 +92,8 @@ def generate(width: int, height: int, fg: str, bkg: str, octaves: int, export_pa
     pt = (octaves//2, octaves//2)
 
     while in_nested(grid, 0):
-        noise(pts, pt, octaves)
+        lagrange_value = noise(pts, pt, octaves, randrange(0, octaves))
+        value = average_k(grid, pt, lagrange_value)
         if grid[pt[1]+1][pt[0]] == 0:
             pt = (pt[0], pt[1]+1)
         elif grid[pt[1]+1][pt[0]+1] == 0:
@@ -117,18 +118,15 @@ def generate(width: int, height: int, fg: str, bkg: str, octaves: int, export_pa
                 except ValueError:
                     continue
 
-def noise(pts, pt, octaves):
-    x = 0
-    while x < octaves:
-        y = 0
-        for i in range(len(pts)):
-            jresult = 1
-            for j in range(len(pts)):
-                if i == j:
-                    continue
-                jresult *= ((x-pts[j][0])/(pts[i][0]-pts[j][0]))
-            y += pts[i][1]*jresult
-        x += .01
+def noise(pts, pt, octaves, x):
+    y = 0
+    for i in range(len(pts)):
+        jresult = 1
+        for j in range(len(pts)):
+            if i == j:
+                continue
+            jresult *= ((x-pts[j][0])/(pts[i][0]-pts[j][0]))
+        y += pts[i][1]*jresult
     return y
 
 def in_nested(nest, num):
@@ -137,3 +135,19 @@ def in_nested(nest, num):
             return True
         else:
             return False
+
+def average_k(grid, pt, lagrange_value):
+    neighbours = 0
+    # Starts at one bc of lagrange value that will be added later in the process
+    divisor = 1
+    for 0 in range(9):
+        try:
+            k = grid[pt[1]//3][pt[0]//3*3]
+            if k != 0:
+                neighbours += k
+                divisor += 1
+        except ValueError:
+            continue
+
+    average = (neighbours + lagrange_value) / divisor
+    return average
