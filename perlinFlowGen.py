@@ -82,7 +82,40 @@ def generate(width: int, height: int, fg: str, bkg: str, octaves: int, export_pa
     for _ in range(octaves):
         pts.append(randrange(-pi, pi))
     
-    start = (width//2, height//2)
+    grid = []
+    for _ in range(octaves):
+        row = []
+        for _ in range(octaves):
+            row.append(0)
+        grid.append(row)
+
+    pt = (octaves//2, octaves//2)
+
+    while in_nested(grid, 0):
+        noise(pts, pt, octaves)
+        if grid[pt[1]+1][pt[0]] == 0:
+            pt = (pt[0], pt[1]+1)
+        elif grid[pt[1]+1][pt[0]+1] == 0:
+            pt = (pt[0]+1, pt[1]+1)
+        elif grid[pt[1]][pt[0]+1] == 0:
+            pt = (pt[0]+1, pt[1])
+        elif grid[pt[1]-1][pt[0]+1] == 0:
+            pt = (pt[0]+1, pt[1]-1)
+        elif grid[pt[1]-1][pt[0]] == 0:
+            pt = (pt[0], pt[1]-1)
+        elif grid[pt[1]-1][pt[0]-1] == 0:
+            pt = (pt[0]-1, pt[1]-1)
+        elif grid[pt[1]][pt[0]-1] == 0:
+            pt = (pt[0]-1, pt[1])
+        elif grid[pt[1]+1][pt[0]-1] == 0:
+            pt = (pt[0]-1, pt[1]+1)
+        else:
+            for i in range(octaves):
+                try:
+                    pt = (grid[i].index(0), i)
+                    break
+                except ValueError:
+                    continue
 
 def noise(pts, pt, octaves):
     x = 0
@@ -96,3 +129,10 @@ def noise(pts, pt, octaves):
                 jresult *= ((x-pts[j][0])/(pts[i][0]-pts[j][0]))
             y += pts[i][1]*jresult
         x += .01
+
+def in_nested(nest, num):
+    for nested in nest:
+        if num in nested:
+            return True
+        else:
+            return False
