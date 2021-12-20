@@ -98,10 +98,14 @@ def generate(width: int, height: int, fg: str, bkg: str, octaves: int, export_pa
     pt = (octaves//2, octaves//2)
     direction = "down"
 
+    x = uniform(0, octaves)
+
     while in_nested(grid, 0):
-        lagrange_value = noise(pts, uniform(0, octaves))
+        prev_x = x
+        x = (prev_x+uniform(0, octaves))/2
+        lagrange_value = noise(pts, x)
         value = average_k(grid, pt, lagrange_value)
-        grid[pt[1]][pt[0]] = value
+        grid[pt[1]][pt[0]] = abs(value)
 
         try:
             pt_changed = False
@@ -212,8 +216,13 @@ def generate(width: int, height: int, fg: str, bkg: str, octaves: int, export_pa
 
     for y in range(octaves): # row
         for x in range(octaves): # column
-            color_value = int((grid[y][x]*255)/(2*pi))
-            pixels[x,y] = (color_value, color_value, color_value)
+            try:
+                color_value = round((grid[y][x]*255)/(2*pi))
+                pixels[x,y] = (color_value, color_value, color_value)
+            except OverflowError:
+                print(y, x)
+                print(grid[y][x])
+                quit()
 
     image.save(export_path)
 
@@ -252,9 +261,10 @@ def average_k(grid, pt, lagrange_value):
     neighbours = 0
     # Starts at one bc of lagrange value that will be added later in the process
     divisor = 1
-    for _ in range(9):
+    for i in range(9):
         try:
-            k = grid[pt[1]//3][pt[0]//3*3]
+            # k = grid[pt[1]//3][pt[0]//3*3]
+            k = grid[pt[1]+(i//3-2)][pt[0]+(i-3*(i//3)-2)]
         except ValueError:
             continue
         if k != 0:
@@ -266,6 +276,11 @@ def average_k(grid, pt, lagrange_value):
             #     neighbours -= k
 
     average = (neighbours + lagrange_value) / divisor
+    if average > 2*pi:
+        print(neighbours)
+        print(lagrange_value)
+        print(divisor)
+        quit()
     # if average > 2*pi:
     #     average = 2*pi
     # elif average < 0:
