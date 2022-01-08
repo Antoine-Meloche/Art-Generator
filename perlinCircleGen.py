@@ -1,6 +1,7 @@
 from PIL import Image
 import math
-from noise import snoise3
+# from noise import snoise3
+from perlin_noise import PerlinNoise
 import random
 
 def generate(width: int, height: int, fg: str, bkg: str, export_path: str):
@@ -18,10 +19,12 @@ def generate(width: int, height: int, fg: str, bkg: str, export_path: str):
 
     z = random.random()
 
+    noise = PerlinNoise()
+
     while angle < 1080:
         x1 = (math.cos(math.radians(angle)))
         y1 = (math.sin(math.radians(angle)))
-        radius = snoise3(x1, y1, z) * spread
+        radius = noise([x1, y1, z]) * spread
         x = radius * math.cos(angle) - xoff
         y = radius * math.sin(angle) - yoff
         pixels[x,y] = fg_color
