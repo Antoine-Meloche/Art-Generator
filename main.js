@@ -1,8 +1,5 @@
 const settingsBtn = document.querySelector(".settings-btn");
 const htmlTag = document.querySelector("html");
-const closeBtn = document.querySelector(".close");
-const maximizeBtn = document.querySelector(".maximize");
-const minimizeBtn = document.querySelector(".minimize");
 const progress = document.querySelector(".in-progress");
 const saveBtn = document.querySelector(".save-btn");
 const exportPathInput = document.querySelector(".export-path");
@@ -30,6 +27,7 @@ const substepsInput = document.querySelector(".substep-input");
 const lengthInput = document.querySelector(".length-input");
 const angleIncrInput = document.querySelector(".angleincr-input");
 const angleInput = document.querySelector(".angle-input");
+const style = document.querySelector("style");
 
 let selected = "default";
 let options;
@@ -76,18 +74,6 @@ saveBtn.onclick = () => {
   }
 };
 
-closeBtn.onclick = () => {
-  pywebview.api.close_window();
-};
-
-maximizeBtn.onclick = () => {
-  pywebview.api.toggle_fullscreen();
-};
-
-minimizeBtn.onclick = () => {
-  pywebview.api.minimize();
-};
-
 const setOnClicks = () => {
   algSelectDefault.onclick = () => {
     if (selected === "default") {
@@ -115,6 +101,17 @@ const setOnClicks = () => {
       "[custom-select] .custom-option.waves"
     );
     setOnClicks();
+    style.innerHTML = `
+        .default-gen-option {
+          display: block;
+        }
+        .cricle-gen-option {
+          display: none;
+        }
+        .flow-gen-option {
+          display: none;
+        }
+      `
   };
 
   algSelectCircle.onclick = () => {
@@ -143,6 +140,17 @@ const setOnClicks = () => {
       "[custom-select] .custom-option.waves"
     );
     setOnClicks();
+    style.innerHTML = `
+    .default-gen-option {
+      display: none;
+    }
+    .cricle-gen-option {
+      display: block;
+    }
+    .flow-gen-option {
+      display: none;
+    }
+  `
   };
 
   algSelectWaves.onclick = () => {
