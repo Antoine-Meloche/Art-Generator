@@ -3,6 +3,7 @@ import webview
 import time
 import defaultGen
 import perlinCircleGen
+import perlinFlowGen
 
 if sys.platform == "linux":
     platform_gui = 'gtk'
@@ -54,11 +55,31 @@ class Api:
         perlinCircleGen.generate(width, height, fg, bkg, export_path)
         self.set_image(export_path)
 
+    def flow_gen(self, width, height, fg, bkg, octaves, particles, iteration, length, export_path):
+        width = int(width)
+        height = int(height)
+        fg = str(fg)
+        bkg = str(bkg)
+        octaves = int(octaves)
+        particles = int(particles)
+        iteration = int(iteration)
+        length = int(length)
+        export_path = str(export_path)
+        perlinFlowGen.generate(
+            width, height, fg, bkg, octaves, particles, iteration, length, export_path)
+        self.set_image(export_path)
+
     def set_image(self, export_path):
         window.evaluate_js(f"document.querySelector('.result img').src = ''")
         window.evaluate_js(
             f"document.querySelector('.result img').src = '{export_path + '?' + str(time.time())}'")
         window.evaluate_js("progress.hidden=true")
+
+    def file_location(self):
+        location = window.create_file_dialog(
+            webview.SAVE_DIALOG, directory="/", save_filename="image.png", file_types=("Image Files (*.jpg;*.png)", "All Files (*.*)"))
+        location = ''.join(location)
+        return location
 
 
 if __name__ == '__main__':

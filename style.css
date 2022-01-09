@@ -11,7 +11,7 @@
   --titlebar-btn-hover-color: #444444;
   --titlebar-btn-indicator-color: #ffffff;
   --close-btn-hover-color: #ff0000;
-  --primary-accent-color: greenyellow;
+  --primary-accent-color: #adff2f;
   --secondary-accent-color: #9e9e9e;
   --primary-text-color: #000000;
 }
@@ -51,12 +51,59 @@ html {
 }
 
 .settings-btn svg {
-  stroke: var(--titlebar-btn-indicator-color);
+  stroke: var(--primary-text-color);
 }
 
 .settings-btn:hover > svg {
   stroke: var(--primary-accent-color);
   transition: 0.25s ease-in-out;
+}
+
+.settings-menu {
+  display: none;
+}
+
+.settings-menu.open {
+  position: fixed;
+  right: 1rem;
+  top: 1rem;
+  z-index: 10000;
+  width: 10rem;
+  height: 5rem;
+  background-color: var(--secondary-background);
+  border-radius: 0.5rem;
+  padding: 0.1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  list-style: none;
+  border: 2px solid var(--primary-text-color);
+}
+
+.settings-menu button {
+  background: none;
+  border: none;
+  color: var(--primary-text-color);
+  cursor: pointer;
+  width: 8rem;
+  height: 2rem;
+  border-radius: 1000rem;
+}
+
+.settings-menu button:hover {
+  background-color: var(--primary-accent-color);
+}
+
+.settings-menu .accent-picker-li {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--primary-text-color);
+}
+
+.settings-menu input {
+  height: 2rem;
 }
 
 .result {
@@ -132,6 +179,7 @@ html {
   background-color: var(--secondary-background);
   border-radius: 3px;
   color: var(--primary-text-color);
+  cursor: pointer;
 }
 
 .no-export-path {
@@ -189,7 +237,7 @@ html {
   flex-direction: column;
   padding: 10px;
   align-items: center;
-  border-top-left-radius: .5rem;
+  border-top-left-radius: 0.5rem;
 }
 
 .options .alg-gen-select {
@@ -202,7 +250,7 @@ html {
   border-radius: 0.5rem;
   color: var(--primary-text-color);
   cursor: pointer;
-  margin-bottom: 5rem;
+  margin-bottom: 1rem;
   background: var(--primary-background);
 }
 
@@ -220,7 +268,7 @@ html {
   border-radius: 0.5rem;
   color: var(--primary-text-color);
   cursor: pointer;
-  margin-bottom: 5rem;
+  margin-bottom: 1rem;
   background-color: var(--primary-background);
   user-select: none;
   overflow: hidden;
@@ -261,6 +309,11 @@ html {
   z-index: 100;
 }
 
+.options [custom-select] .custom-options-list {
+  display: flex;
+  flex-direction: column;
+}
+
 .options [custom-select] .custom-option {
   height: 2.5rem;
   width: 100%;
@@ -281,7 +334,7 @@ html {
   border-radius: 0.5rem;
 }
 
-.options [custom-select] .custom-option.waves {
+.options [custom-select] .custom-option.flow {
   border-radius: 0 0 0.5rem 0.5rem;
 }
 
@@ -303,11 +356,16 @@ html {
 }
 
 .option input[type="number"] {
+  padding: 0.5rem 0.25rem;
   margin-left: 1rem;
   border: 1px solid var(--primary-text-color);
   border-radius: 0.2rem;
   background-color: var(--primary-background);
   color: var(--primary-text-color);
+}
+
+.option input[type="number"]:focus {
+  border-color: var(--primary-accent-color);
 }
 
 .options .gen-options label {

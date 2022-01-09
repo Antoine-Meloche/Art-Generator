@@ -102,7 +102,11 @@ def generate(width: int, height: int, fg: str, bkg: str, octaves: int, nb_partic
 
             pos = (abs(pos[0]+x_incr), abs(pos[1]+y_incr))
 
-    image.save(export_path)
+    try:
+        image.save(export_path)
+        return 201
+    except:
+        return 418
 
 
 def new_point(octaves, grid):

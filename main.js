@@ -14,8 +14,8 @@ let algSelectDefault = document.querySelector(
 let algSelectCircle = document.querySelector(
   "[custom-select] .custom-option.circle"
 );
-let algSelectWaves = document.querySelector(
-  "[custom-select] .custom-option.waves"
+let algSelectFlow = document.querySelector(
+  "[custom-select] .custom-option.flow"
 );
 const widthInput = document.querySelector(".width-input");
 const heightInput = document.querySelector(".height-input");
@@ -27,10 +27,23 @@ const substepsInput = document.querySelector(".substep-input");
 const lengthInput = document.querySelector(".length-input");
 const angleIncrInput = document.querySelector(".angleincr-input");
 const angleInput = document.querySelector(".angle-input");
+const octavesInput = document.querySelector(".octaves-input");
+const particlesInput = document.querySelector(".particles-input");
 const style = document.querySelector("style");
+const accentStyle = document.querySelector(".accent-color-styling");
+const accentPicker = document.querySelector(".accent-color-picker");
+const themeChanger = document.querySelector(".theme-changer");
+const settingsMenu = document.querySelector(".settings-menu");
 
 let selected = "default";
 let options;
+
+exportPathInput.onclick = () => {
+  pywebview.api.file_location().then((result) => {
+    exportPathInput.innerHTML = result;
+    exportPathInput.value = result;
+  });
+};
 
 window.addEventListener("pywebviewready", () => {
   pywebview.api.init().then((response) => {
@@ -69,8 +82,18 @@ saveBtn.onclick = () => {
       bkgInput.value,
       exportPathInput.value
     );
-  } else if (selected === "waves") {
-    pywebview.api.generate("waves", []);
+  } else if (selected === "flow") {
+    pywebview.api.flow_gen(
+      widthInput.value,
+      heightInput.value,
+      lineColorInput.value,
+      bkgInput.value,
+      octavesInput.value,
+      particlesInput.value,
+      iterationInput.value,
+      lengthInput.value,
+      exportPathInput.value
+    );
   }
 };
 
@@ -82,7 +105,7 @@ const setOnClicks = () => {
     }
     customOptionsList.innerHTML = `<div class="custom-option one default" value="default">Collatz Conjecture (3x+1)</div>
     <div class="custom-option two circle" value="circle">Perlin Noise Circles</div>
-    <div class="custom-option three waves" value="waves">Waves</div>`;
+    <div class="custom-option three flow" value="flow">Perlin Flow Field</div>`;
     algSelectDiv.classList.remove("expanded");
     selected = "default";
     startInput.classList.remove("hidden");
@@ -97,21 +120,15 @@ const setOnClicks = () => {
     algSelectCircle = document.querySelector(
       "[custom-select] .custom-option.circle"
     );
-    algSelectWaves = document.querySelector(
-      "[custom-select] .custom-option.waves"
+    algSelectFlow = document.querySelector(
+      "[custom-select] .custom-option.flow"
     );
     setOnClicks();
     style.innerHTML = `
-        .default-gen-option {
-          display: block;
-        }
-        .cricle-gen-option {
-          display: none;
-        }
         .flow-gen-option {
           display: none;
         }
-      `
+      `;
   };
 
   algSelectCircle.onclick = () => {
@@ -121,7 +138,7 @@ const setOnClicks = () => {
     }
     customOptionsList.innerHTML = `<div class="custom-option one circle" value="circle">Perlin Noise Circles</div>
           <div class="custom-option two default" value="default">Collatz Conjecture (3x+1)</div>
-          <div class="custom-option three waves" value="waves">Waves</div>`;
+          <div class="custom-option three flow" value="flow">Perlin Flow Field</div>`;
     algSelectDiv.classList.remove("expanded");
     selected = "circle";
     startInput.classList.add("hidden");
@@ -136,33 +153,33 @@ const setOnClicks = () => {
     algSelectCircle = document.querySelector(
       "[custom-select] .custom-option.circle"
     );
-    algSelectWaves = document.querySelector(
-      "[custom-select] .custom-option.waves"
+    algSelectFlow = document.querySelector(
+      "[custom-select] .custom-option.flow"
     );
     setOnClicks();
     style.innerHTML = `
     .default-gen-option {
       display: none;
     }
-    .cricle-gen-option {
-      display: block;
+    .notcirc-gen-option {
+      display: none;
     }
     .flow-gen-option {
       display: none;
     }
-  `
+  `;
   };
 
-  algSelectWaves.onclick = () => {
-    if (selected === "waves") {
+  algSelectFlow.onclick = () => {
+    if (selected === "flow") {
       algSelectDiv.classList.toggle("expanded");
       return;
     }
-    customOptionsList.innerHTML = `<div class="custom-option one waves" value="waves">Waves</div>
+    customOptionsList.innerHTML = `<div class="custom-option one flow" value="flow">Perlin Flow Field</div>
                 <div class="custom-option two default" value="default">Collatz Conjecture (3x+1)</div>
                 <div class="custom-option three circle" value="circle">Perlin Noise Circles</div>`;
     algSelectDiv.classList.remove("expanded");
-    selected = "waves";
+    selected = "flow";
     startInput.classList.add("hidden");
     iterationInput.classList.add("hidden");
     substepsInput.classList.add("hidden");
@@ -175,10 +192,15 @@ const setOnClicks = () => {
     algSelectCircle = document.querySelector(
       "[custom-select] .custom-option.circle"
     );
-    algSelectWaves = document.querySelector(
-      "[custom-select] .custom-option.waves"
+    algSelectFlow = document.querySelector(
+      "[custom-select] .custom-option.flow"
     );
     setOnClicks();
+    style.innerHTML = `
+    .default-gen-option {
+      display: none;
+    }
+  `;
   };
 };
 setOnClicks();
@@ -198,5 +220,15 @@ const changeTheme = () => {
 };
 
 settingsBtn.onclick = () => {
+  settingsMenu.classList.toggle("open");
+};
+
+themeChanger.onclick = () => {
   changeTheme();
+  settingsMenu.classList.remove("open");
+};
+
+accentPicker.onchange = () => {
+  accentStyle.innerHTML = `:root{ --primary-accent-color: ${accentPicker.value};`;
+  settingsMenu.classList.remove("open");
 };
