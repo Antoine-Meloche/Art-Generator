@@ -14,10 +14,11 @@
 <body>
 
   <style></style>
+  <style class="accent-color-styling"></style>
 
   <button class="settings-btn">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"
-      stroke-linecap="round" stroke-linejoin="round" class="feather feather-sliders">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"
+      stroke-linejoin="round" class="feather feather-sliders">
       <line x1="4" y1="21" x2="4" y2="14"></line>
       <line x1="4" y1="10" x2="4" y2="3"></line>
       <line x1="12" y1="21" x2="12" y2="12"></line>
@@ -29,7 +30,11 @@
       <line x1="17" y1="16" x2="23" y2="16"></line>
     </svg>
   </button>
-  
+  <ul class="settings-menu">
+    <li><button class="theme-changer">Theme</button></li>
+    <li class="accent-picker-li">Accent Color: <input class="accent-color-picker" value="#adff2f" type="color"></li>
+  </ul>
+
   <div class="result">
     <div hidden class="in-progress"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
         fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -50,7 +55,7 @@
   <div class="export-options">
     <form onsubmit="return false">
       <div class="no-export-path">An export path is required.</div>
-      <input class="export-path" type="text" placeholder="/path/to/file.png" />
+      <button class="export-path" value="">File Location</button>
       <button class="save-btn">Save<span></span></button>
     </form>
   </div>
@@ -66,7 +71,7 @@
       <div class="custom-options-list">
         <div class="custom-option one default" value="default">Collatz Conjecture (3x+1)</div>
         <div class="custom-option two circle" value="circle">Perlin Noise Circles</div>
-        <div class="custom-option three waves" value="waves">Waves</div>
+        <div class="custom-option three flow" value="flow">Perlin Flow Field</div>
       </div>
     </div>
 
@@ -87,22 +92,36 @@
         <label>Line Color:</label>
         <input class="line-color-picker" value="#ffffff" type="color" />
       </div>
+
       <div class="option default-gen-option">
         <label>Start:</label>
         <input class="start-input" value="1" type="number" min="1" />
       </div>
-      <div class="option default-gen-option">
+
+      <div class="option flow-gen-option">
+        <label>Octaves:</label>
+        <input class="octaves-input" value="0" type="number">
+      </div>
+      <div class="option flow-gen-option">
+        <label>Number of Particles:</label>
+        <input class="particles-input" value="0" type="number">
+      </div>
+
+      <div class="option notcirc-gen-option">
         <label>Iterations:</label>
         <input class="iteration-input" value="30" type="number">
       </div>
+
       <div class="option default-gen-option">
         <label>Substeps:</label>
         <input class="substep-input" value="10" type="number">
       </div>
-      <div class="option default-gen-option">
+
+      <div class="option notcirc-gen-option">
         <label>Length of a line:</label>
         <input class="length-input" value="100" type="number">
       </div>
+
       <div class="option default-gen-option">
         <label>Angle increment:</label>
         <input class="angleincr-input" value="10" type="number">
