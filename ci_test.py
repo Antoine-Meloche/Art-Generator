@@ -10,7 +10,7 @@ def test_defaultGen():
     assert defaultGen.generate(
         2100, 1300, "#ffffff", "#242424", 50, 30, 10, 100, 10, 0, "./image.png") == 201
     end = time()
-    print("The Default algorithm took %ss to complete" %
+    print("\nThe Default algorithm took %ss to complete" %
           (end - start))
 
 
@@ -25,7 +25,7 @@ def test_perlinCircleGen():
 
 def test_perlinFlowGen():
     start = time()
-    assert perlinFlowGen.generate(2100, 1300, "#ffffff", "#242424", 50, 1000, 500, 1, "./image.png")
+    assert perlinFlowGen.generate(2100, 1300, "#ffffff", "#242424", 50, 1000, 500, 1, "./image.png") == 201
     end = time()
     print("The Perlin Flow algortihm took %ss to complete" % (end-start))
 

@@ -27,7 +27,7 @@ jobs:
             pillow
             pytest
             pip
-            perlin_noise
+            git+https://github.com/Antoine-Meloche/perlin_noise@patch-2#egg=perlin-noise
           upgrade: true
       - run: pytest -rx --capture=tee-sys --show-capture=stdout
       
@@ -54,7 +54,7 @@ jobs:
             pillow
             pytest
             pip
-            perlin_noise
+            git+https://github.com/Antoine-Meloche/perlin_noise@patch-2#egg=perlin-noise
           upgrade: true
       - run: pytest -rx --capture=tee-sys --show-capture=stdout
       
@@ -79,6 +79,6 @@ jobs:
             pillow
             pytest
             pip
-            perlin_noise
+            git+https://github.com/Antoine-Meloche/perlin_noise@patch-2#egg=perlin-noise
           upgrade: true
       - run: pytest -rx --capture=tee-sys --show-capture=stdout
