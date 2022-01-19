@@ -34,6 +34,9 @@ const accentStyle = document.querySelector(".accent-color-styling");
 const accentPicker = document.querySelector(".accent-color-picker");
 const themeChanger = document.querySelector(".theme-changer");
 const settingsMenu = document.querySelector(".settings-menu");
+const previewBtn = document.querySelector(".preview-btn");
+const flowIterationInput = document.querySelector(".flow-iteration-input");
+const flowLengthInput = document.querySelector(".flow-length-input");
 
 let selected = "default";
 let options;
@@ -50,6 +53,45 @@ window.addEventListener("pywebviewready", () => {
     console.log(response);
   });
 });
+
+previewBtn.onclick = () => {
+  progress.hidden = false;
+  if (selected === "default") {
+    pywebview.api.default_gen(
+      widthInput.value,
+      heightInput.value,
+      lineColorInput.value,
+      bkgInput.value,
+      startInput.value,
+      iterationInput.value,
+      substepsInput.value,
+      lengthInput.value,
+      angleIncrInput.value,
+      angleInput.value,
+      "image.png"
+    );
+  } else if (selected === "circle") {
+    pywebview.api.circle_gen(
+      widthInput.value,
+      heightInput.value,
+      lineColorInput.value,
+      bkgInput.value,
+      "image.png"
+    );
+  } else if (selected === "flow") {
+    pywebview.api.flow_gen(
+      widthInput.value,
+      heightInput.value,
+      lineColorInput.value,
+      bkgInput.value,
+      octavesInput.value,
+      particlesInput.value,
+      flowIterationInput.value,
+      flowLengthInput.value,
+      "image.png"
+    );
+  }
+};
 
 saveBtn.onclick = () => {
   if (exportPathInput.value === "") {
@@ -90,8 +132,8 @@ saveBtn.onclick = () => {
       bkgInput.value,
       octavesInput.value,
       particlesInput.value,
-      iterationInput.value,
-      lengthInput.value,
+      flowIterationInput.value,
+      flowLengthInput.value,
       exportPathInput.value
     );
   }

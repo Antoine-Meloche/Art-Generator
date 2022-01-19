@@ -1,3 +1,4 @@
+import os
 import sys
 import webview
 import time
@@ -66,7 +67,16 @@ class Api:
         length = int(length)
         export_path = str(export_path)
         perlinFlowGen.generate(
-            width, height, fg, bkg, octaves, particles, iteration, length, export_path)
+            width,
+            height,
+            fg,
+            bkg,
+            octaves,
+            particles,
+            iteration,
+            length,
+            export_path
+            )
         self.set_image(export_path)
 
     def set_image(self, export_path):
@@ -77,13 +87,30 @@ class Api:
 
     def file_location(self):
         location = window.create_file_dialog(
-            webview.SAVE_DIALOG, directory="/", save_filename="image.png", file_types=("Image Files (*.jpg;*.png)", "All Files (*.*)"))
+            webview.SAVE_DIALOG,
+            directory="/",
+            save_filename="image.png",
+            file_types=("Image Files (*.jpg;*.png)", "All Files (*.*)")
+            )
         location = ''.join(location)
+        if (os.path.exists(location)):
+            window.evaluate_js("""
+                document.querySelector(".file-exists").style.height = "2rem";
+                setTimeout(() => {
+                    document.querySelector(".file-exists").style.height = "0";
+                }, 2000);
+                """)
         return location
 
 
 if __name__ == '__main__':
     api = Api()
     window = webview.create_window('Art Generator | Made by Antoine Meloche',
-                                   './index.html', frameless=False, easy_drag=False, js_api=api, resizable=True, min_size=(1200, 800))
+                                   './index.html',
+                                   frameless=False,
+                                   easy_drag=False,
+                                   js_api=api,
+                                   resizable=True,
+                                   min_size=(1200, 800)
+                                   )
     webview.start(gui=platform_gui)

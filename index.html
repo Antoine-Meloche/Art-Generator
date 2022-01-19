@@ -13,7 +13,11 @@
 
 <body>
 
-  <style></style>
+  <style>
+    .flow-gen-option {
+      display: none;
+    }
+  </style>
   <style class="accent-color-styling"></style>
 
   <button class="settings-btn">
@@ -55,6 +59,7 @@
   <div class="export-options">
     <form onsubmit="return false">
       <div class="no-export-path">An export path is required.</div>
+      <div class="file-exists">This file exists and WILL be overwritten</div>
       <button class="export-path" value="">File Location</button>
       <button class="save-btn">Save<span></span></button>
     </form>
@@ -101,16 +106,20 @@
 
         <div class="option flow-gen-option">
           <label>Octaves:</label>
-          <input class="octaves-input" value="0" type="number">
+          <input class="octaves-input" value="10" type="number">
         </div>
         <div class="option flow-gen-option">
           <label>Number of Particles:</label>
-          <input class="particles-input" value="0" type="number">
+          <input class="particles-input" value="20000" type="number">
         </div>
 
-        <div class="option notcirc-gen-option">
+        <div class="option default-gen-option">
           <label>Iterations:</label>
           <input class="iteration-input" value="30" type="number">
+        </div>
+        <div class="option flow-gen-option">
+          <label>Iterations:</label>
+          <input class="flow-iteration-input" value="10" type="number">
         </div>
 
         <div class="option default-gen-option">
@@ -118,9 +127,13 @@
           <input class="substep-input" value="10" type="number">
         </div>
 
-        <div class="option notcirc-gen-option">
+        <div class="option default-gen-option">
           <label>Length of a line:</label>
           <input class="length-input" value="100" type="number">
+        </div>
+        <div class="option flow-gen-option">
+          <label>Length of a line:</label>
+          <input class="flow-length-input" value="1" type="number">
         </div>
 
         <div class="option default-gen-option">
@@ -130,6 +143,10 @@
         <div class="option default-gen-option">
           <label>Starting angle:</label>
           <input class="angle-input" value="0" type="number">
+        </div>
+
+        <div class="option">
+          <button class="preview-btn">Preview</button>
         </div>
       </div>
     </div>
