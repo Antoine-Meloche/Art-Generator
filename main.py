@@ -86,4 +86,4 @@ if __name__ == '__main__':
     api = Api()
     window = webview.create_window('Art Generator | Made by Antoine Meloche',
                                    './index.html', frameless=False, easy_drag=False, js_api=api, resizable=True, min_size=(1200, 800))
-    webview.start(gui=platform_gui, debug=True)
+    webview.start(gui=platform_gui)

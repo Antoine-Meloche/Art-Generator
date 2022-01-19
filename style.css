@@ -277,6 +277,7 @@ html {
 
 .options [custom-select].expanded {
   height: 7.5rem;
+  overflow: unset;
 }
 
 .options [custom-select] svg {
@@ -338,6 +339,10 @@ html {
   border-radius: 0 0 0.5rem 0.5rem;
 }
 
+.options .gen-options-container {
+	height: 100%;
+}
+
 .options .gen-options {
   font-weight: 700;
   font-family: "Courier New";
@@ -345,6 +350,8 @@ html {
   background-color: var(--secondary-background);
   padding: 2rem;
   border-radius: 1rem;
+  overflow: scroll;
+  height: 95%;
 }
 
 .option {
