@@ -253,6 +253,7 @@ html {
   padding: 10px;
   align-items: center;
   border-top-left-radius: 0.5rem;
+  overflow-x: hidden;
 }
 
 .options .alg-gen-select {
