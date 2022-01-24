@@ -9,7 +9,7 @@ import perlinFlowGen
 if sys.platform == "linux":
     platform_gui = 'gtk'
 elif sys.platform == "win32":
-    platform_gui = 'mshtml'
+    platform_gui = 'cef'
 elif sys.platform == "darwin":
     platform_gui = ''
 
