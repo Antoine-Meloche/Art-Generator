@@ -1,0 +1,24 @@
+cff-version: 1.2.0
+title: Art Generator
+message: 'Please use the below information to cite this software'
+type: software
+authors:
+  - given-names: Antoine
+    family-names: Meloche
+    email: antmeloche@gmail.com
+    orcid: 'https://orcid.org/0000-0001-7126-0051'
+identifiers:
+  - type: doi
+    value: 10.5281/zenodo.5915203
+repository-code: 'https://github.com/Antoine-Meloche/Art-Generator.git'
+url: 'https://github.com/Antoine-Meloche/Art-Generator'
+abstract: A Python GUI application to generate abstract Art using randomness
+keywords:
+  - python
+  - art
+  - generator
+  - perlin
+  - generative
+  - random
+  - randomness
+license: MIT
