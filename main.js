@@ -34,7 +34,7 @@ const accentStyle = document.querySelector(".accent-color-styling");
 const accentPicker = document.querySelector(".accent-color-picker");
 const themeChanger = document.querySelector(".theme-changer");
 const settingsMenu = document.querySelector(".settings-menu");
-const previewBtn = document.querySelector(".preview-btn");
+// const previewBtn = document.querySelector(".preview-btn");
 const flowIterationInput = document.querySelector(".flow-iteration-input");
 const flowLengthInput = document.querySelector(".flow-length-input");
 
@@ -54,7 +54,7 @@ window.addEventListener("pywebviewready", () => {
   });
 });
 
-previewBtn.onclick = () => {
+/* previewBtn.onclick = () => {
   progress.hidden = false;
   if (selected === "default") {
     pywebview.api.default_gen(
@@ -91,7 +91,7 @@ previewBtn.onclick = () => {
       "image.png"
     );
   }
-};
+}; */
 
 saveBtn.onclick = () => {
   if (exportPathInput.value === "") {
