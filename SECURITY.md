@@ -3,9 +3,10 @@
 ## Supported Versions
 | Version | Supported          |
 |:-------:|:------------------:|
-| v0.0.1   | :white_check_mark: |
+| v1.0.0  | :white_check_mark: |
+| v0.0.1  |         :x:        |
 
 
 ## Reporting a Vulnerability
 
-If you find a security vulnerability in this program, please submit an issue if it is a low threat vulnerability. If the vulnerability is high threat, please do not submit and issue and directly inform me of the vulnerability by email at: antmeloche@gmail.com.
+If you find a security vulnerability in this program, please submit a Github issue. 

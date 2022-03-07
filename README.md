@@ -8,7 +8,7 @@ To use this application, you can download the executable for your platform [here
 `git clone https://github.com/Antoine-Meloche/Art-Generator.git`\
 `cd Art-Generator`\
 `python -m pip install pywebview pillow perlin-noise`\
-`python main.py`\
+`python main.py`
 
 ### On Linux some other dependencies may need to be installed
 (Debian based distros using apt):
